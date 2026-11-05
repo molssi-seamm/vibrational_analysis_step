@@ -1,4 +1,5 @@
 seamm
+seamm-exec
 seamm-util
 seamm-widgets
 numpy

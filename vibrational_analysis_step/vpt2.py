@@ -36,6 +36,7 @@ from .fermi import Interaction, State, fermi_solver
 HARTREE_TO_CM = 219474.6313632
 HARTREE_TO_KJMOL = 2625.4996394799
 AMU_TO_ME = 1822.888486209
+BOHR_TO_ANGSTROM = 0.529177210903
 CM_TO_KJMOL = HARTREE_TO_KJMOL / HARTREE_TO_CM
 
 #: The steps, in units of the displacement, for each finite-difference route

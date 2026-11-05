@@ -130,16 +130,98 @@ type : str
 units : str
     Optional units for the result. If present, the value should be in these units.
 """
-# metadata["results"] = {
-#     "total_energy": {
-#         "calculation": [
-#             "energy",
-#             "optimization",
-#         ],
-#         "description": "The total energy",
-#         "dimensionality": "scalar",
-#         "property": "total energy#VibrationalAnalysis#{model}",
-#         "type": "float",
-#         "units": "E_h",
-#     },
-# }
+metadata["results"] = {
+    "energy": {
+        "description": "The energy at the structure analyzed",
+        "dimensionality": "scalar",
+        "type": "float",
+        "units": "kJ/mol",
+        "format": ".6f",
+    },
+    "ZPE": {
+        "description": "The anharmonic (VPT2) zero-point energy, with its constant G0",
+        "dimensionality": "scalar",
+        "property": "ZPE#VPT2#{model}",
+        "type": "float",
+        "units": "kJ/mol",
+        "format": ".4f",
+    },
+    "harmonic ZPE": {
+        "description": "The harmonic zero-point energy from the same Hessian",
+        "dimensionality": "scalar",
+        "property": "harmonic ZPE#VPT2#{model}",
+        "type": "float",
+        "units": "kJ/mol",
+        "format": ".4f",
+    },
+    "ZPE correction": {
+        "description": "The anharmonic correction to the zero-point energy",
+        "dimensionality": "scalar",
+        "property": "ZPE correction#VPT2#{model}",
+        "type": "float",
+        "units": "kJ/mol",
+        "format": ".4f",
+    },
+    "G0": {
+        "description": "The constant term G0 of the VPT2 zero-point energy",
+        "dimensionality": "scalar",
+        "type": "float",
+        "units": "1/cm",
+        "format": ".3f",
+    },
+    "harmonic frequencies": {
+        "description": "The harmonic frequencies",
+        "dimensionality": "[n_modes]",
+        "property": "harmonic frequencies#VPT2#{model}",
+        "type": "json",
+        "units": "1/cm",
+        "format": ".2f",
+    },
+    "fundamentals": {
+        "description": "The anharmonic fundamental frequencies",
+        "dimensionality": "[n_modes]",
+        "property": "anharmonic fundamentals#VPT2#{model}",
+        "type": "json",
+        "units": "1/cm",
+        "format": ".2f",
+    },
+    "overtones": {
+        "description": "The first overtones, 2 nu_i",
+        "dimensionality": "[n_modes]",
+        "property": "overtones#VPT2#{model}",
+        "type": "json",
+        "units": "1/cm",
+        "format": ".2f",
+    },
+    "combination bands": {
+        "description": "The combination bands nu_i + nu_j",
+        "dimensionality": "[n_modes, n_modes]",
+        "property": "combination bands#VPT2#{model}",
+        "type": "json",
+        "units": "1/cm",
+        "format": ".2f",
+    },
+    "chi": {
+        "description": "The anharmonicity constants",
+        "dimensionality": "[n_modes, n_modes]",
+        "property": "anharmonicity constants#VPT2#{model}",
+        "type": "json",
+        "units": "1/cm",
+        "format": ".3f",
+    },
+    "resonances": {
+        "description": "The Fermi resonances treated, as text",
+        "dimensionality": "scalar",
+        "type": "string",
+    },
+    "flagged modes": {
+        "description": "The modes VPT2 should not be trusted for (1-based)",
+        "dimensionality": "[n_flagged]",
+        "type": "json",
+    },
+    "n_modes": {
+        "description": "The number of vibrational modes",
+        "dimensionality": "scalar",
+        "type": "integer",
+    },
+}

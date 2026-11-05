@@ -96,94 +96,64 @@ class TkVibrationalAnalysis(seamm.TkNode):
         )
 
     def create_dialog(self):
-        """
-        Create the dialog. A set of widgets will be chosen by default
-        based on what is specified in the Vibrational Analysis_parameters
-        module.
-
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        None
-
-        See Also
-        --------
-        TkVibrationalAnalysis.reset_dialog
-        """
-
+        """Create the dialog: the optimization, the route and derivatives, the
+        displacement and the treatment of resonances and low modes."""
         frame = super().create_dialog(title="Vibrational Analysis")
-        # Shortcut for parameters
         P = self.node.parameters
-
-        # Then create the widgets
         for key in P:
-            if key[0] != "_" and key not in (
-                "results",
-                "extra keywords",
-                "create tables",
-            ):
+            if key[0] != "_" and key != "results":
                 self[key] = P[key].widget(frame)
-
-        # and lay them out
+        # The layout follows these choices
+        for key in ("optimize", "hessian route", "resonances"):
+            self[key].bind("<<ComboboxSelected>>", self.reset_dialog)
+            self[key].bind("<Return>", self.reset_dialog)
+            self[key].bind("<FocusOut>", self.reset_dialog)
         self.reset_dialog()
 
     def reset_dialog(self, widget=None):
-        """Layout the widgets in the dialog.
-
-        The widgets are chosen by default from the information in
-        Vibrational Analysis_parameter.
-
-        This function simply lays them out row by row with
-        aligned labels. You may wish a more complicated layout that
-        is controlled by values of some of the control parameters.
-        If so, edit or override this method
-
-        Parameters
-        ----------
-        widget : Tk Widget = None
-
-        Returns
-        -------
-        None
-
-        See Also
-        --------
-        TkVibrationalAnalysis.create_dialog
-        """
-
-        # Remove any widgets previously packed
+        """Lay out the widgets, hiding those that do not apply: the optimization
+        settings when the structure is not optimized (or the route is separate
+        tasks, which cannot optimize), and the resonance thresholds when
+        resonances are not treated."""
         frame = self["frame"]
         for slave in frame.grid_slaves():
             slave.grid_forget()
 
-        # Shortcut for parameters
-        P = self.node.parameters
+        tasks = self["hessian route"].get() == "separate tasks"
+        if tasks:
+            self["optimize"].set("no")
+        optimize = self["optimize"].get() == "yes" and not tasks
+        resonances = not self["resonances"].get().startswith("none")
 
-        # keep track of the row in a variable, so that the layout is flexible
-        # if e.g. rows are skipped to control such as "method" here
-        row = 0
+        keys = ["hessian route"]
+        if not tasks:
+            keys.append("optimize")
+        if optimize:
+            keys.extend(["fmax", "max steps"])
+        keys.extend(["derivatives", "displacement", "resonances"])
+        if resonances:
+            keys.extend(["resonance window", "resonance threshold"])
+        keys.append("low frequency")
+
         widgets = []
-        for key in P:
-            if key[0] != "_" and key not in (
-                "results",
-                "extra keywords",
-                "create tables",
-            ):
-                self[key].grid(row=row, column=0, sticky=tk.EW)
-                widgets.append(self[key])
-                row += 1
-
-        # Align the labels
+        for row, key in enumerate(keys):
+            indent = key in (
+                "fmax",
+                "max steps",
+                "resonance window",
+                "resonance threshold",
+            )
+            self[key].grid(
+                row=row,
+                column=0,
+                columnspan=2 if not indent else 1,
+                sticky=tk.EW,
+                padx=(30 if indent else 0, 0),
+            )
+            widgets.append(self[key])
         sw.align_labels(widgets, sticky=tk.E)
 
-        # Setup the results if there are any
-        have_results = (
-            "results" in self.node.metadata and len(self.node.metadata["results"]) > 0
-        )
-        if have_results and "results" in P:
+        if "results" in self.node.metadata and "results" in self.node.parameters:
             self.setup_results()
 
     def right_click(self, event):

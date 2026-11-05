@@ -75,25 +75,146 @@ class VibrationalAnalysisParameters(seamm.Parameters):
     """
 
     parameters = {
-        "time": {
-            "default": 100.0,
+        "optimize": {
+            "default": "yes",
+            "kind": "boolean",
+            "default_units": "",
+            "enumeration": ("yes", "no"),
+            "format_string": "s",
+            "description": "Optimize the structure first:",
+            "help_text": (
+                "Optimize the structure over the Model Chemistry's engine before the "
+                "analysis. VPT2 needs a tight minimum: the cubic and quartic force "
+                "constants are differences of Hessians or gradients, and a residual "
+                "force shows up in them."
+            ),
+        },
+        "fmax": {
+            "default": 0.0005,
             "kind": "float",
-            "default_units": "ps",
+            "default_units": "eV/Å",
+            "enumeration": tuple(),
+            "format_string": ".5f",
+            "description": "Converge to forces below:",
+            "help_text": "The largest force at which the optimization stops.",
+        },
+        "max steps": {
+            "default": 500,
+            "kind": "integer",
+            "default_units": "",
+            "enumeration": tuple(),
+            "format_string": "d",
+            "description": "Maximum optimization steps:",
+            "help_text": "The most steps the optimization may take.",
+        },
+        "hessian route": {
+            "default": "automatic",
+            "kind": "enum",
+            "default_units": "",
+            "enumeration": ("automatic", "warm engine over MDI", "separate tasks"),
+            "format_string": "",
+            "description": "Calculations via:",
+            "help_text": (
+                "How the Model Chemistry is driven: automatically (the warm MDI engine "
+                "when the program has one and is installed here, else separate tasks "
+                "where the job runs them); the warm engine, which also allows the "
+                "optimization; or separate tasks, which run in parallel but cannot "
+                "optimize the structure."
+            ),
+        },
+        "derivatives": {
+            "default": "automatic",
+            "kind": "enum",
+            "default_units": "",
+            "enumeration": ("automatic", "Hessians", "gradients"),
+            "format_string": "",
+            "description": "At the displaced structures:",
+            "help_text": (
+                "What is computed at the structures displaced along the normal modes: "
+                "Hessians (2 per mode) when the engine has an analytic Hessian, else "
+                "gradients (about 2n^2 for n modes, but each is cheap and they can run "
+                "as parallel tasks). Hessians by finite differences of forces are "
+                "possible but cost more than the gradients."
+            ),
+        },
+        "displacement": {
+            "default": 0.05,
+            "kind": "float",
+            "default_units": "",
+            "enumeration": tuple(),
+            "format_string": ".3f",
+            "description": "Displacement:",
+            "help_text": (
+                "The step along each normal mode, in dimensionless (reduced) normal "
+                "coordinates. 0.05 is the usual choice: larger steps add higher-order "
+                "error, smaller ones numerical noise."
+            ),
+        },
+        "resonances": {
+            "default": "GVPT2 (variational)",
+            "kind": "enum",
+            "default_units": "",
+            "enumeration": (
+                "GVPT2 (variational)",
+                "deperturbed VPT2",
+                "none (plain VPT2)",
+            ),
+            "format_string": "",
+            "description": "Fermi resonances:",
+            "help_text": (
+                "How Fermi resonances are treated: found by Martin's criteria, removed "
+                "from the perturbation sums, then the resonant states mixed "
+                "variationally (GVPT2, the default); only removed (deperturbed VPT2); "
+                "or not treated, which can give wildly wrong frequencies near a "
+                "resonance."
+            ),
+        },
+        "resonance window": {
+            "default": 200.0,
+            "kind": "float",
+            "default_units": "1/cm",
             "enumeration": tuple(),
             "format_string": ".1f",
-            "description": "Simulation time:",
-            "help_text": ("The time to simulate in the dynamics run."),
+            "description": "Resonance window:",
+            "help_text": (
+                "Martin's first criterion: how close a fundamental must be to an "
+                "overtone or combination band to be checked for a resonance."
+            ),
         },
-        # # Results handling ... uncomment if needed
-        # "results": {
-        #     "default": {},
-        #     "kind": "dictionary",
-        #     "default_units": "",
-        #     "enumeration": tuple(),
-        #     "format_string": "",
-        #     "description": "results",
-        #     "help_text": "The results to save to variables or in tables.",
-        # },
+        "resonance threshold": {
+            "default": 1.0,
+            "kind": "float",
+            "default_units": "1/cm",
+            "enumeration": tuple(),
+            "format_string": ".2f",
+            "description": "Resonance threshold:",
+            "help_text": (
+                "Martin's second criterion: the smallest second-order shift that "
+                "counts as a resonance."
+            ),
+        },
+        "low frequency": {
+            "default": 200.0,
+            "kind": "float",
+            "default_units": "1/cm",
+            "enumeration": tuple(),
+            "format_string": ".1f",
+            "description": "Flag modes below:",
+            "help_text": (
+                "Modes below this frequency are flagged: VPT2 is unreliable for "
+                "torsions and other large-amplitude motions. They stay in the "
+                "anharmonic zero-point energy."
+            ),
+        },
+        "results": {
+            "default": {},
+            "kind": "dictionary",
+            "default_units": "",
+            "enumeration": tuple(),
+            "format_string": "",
+            "description": "results",
+            "help_text": "The results to save to variables or in tables.",
+        },
     }
 
     def __init__(self, defaults={}, data=None):

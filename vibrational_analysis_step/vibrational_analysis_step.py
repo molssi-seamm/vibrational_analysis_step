@@ -32,8 +32,10 @@ class VibrationalAnalysisStep(object):
     """
 
     my_description = {
-        "description": "An interface for Vibrational Analysis",
-        "group": "Simulations",
+        "description": (
+            "Anharmonic vibrational analysis (VPT2) with any Model Chemistry"
+        ),
+        "group": "Properties",
         "name": "Vibrational Analysis",
     }
 

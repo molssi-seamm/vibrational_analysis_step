@@ -1,1 +1,9 @@
 Property,Type,Units,Description,URL
+ZPE#VPT2#{model},float,kJ/mol,"The anharmonic (VPT2) zero-point energy with {model}, including the constant G0",https://en.wikipedia.org/wiki/Zero-point_energy
+harmonic ZPE#VPT2#{model},float,kJ/mol,"The harmonic zero-point energy with {model}, from the Hessian of the VPT2 analysis",https://en.wikipedia.org/wiki/Zero-point_energy
+ZPE correction#VPT2#{model},float,kJ/mol,"The anharmonic correction to the zero-point energy with {model}",
+harmonic frequencies#VPT2#{model},json,1/cm,"The harmonic frequencies with {model}",
+anharmonic fundamentals#VPT2#{model},json,1/cm,"The anharmonic (VPT2) fundamental frequencies with {model}",
+overtones#VPT2#{model},json,1/cm,"The VPT2 first overtones with {model}",
+combination bands#VPT2#{model},json,1/cm,"The VPT2 combination bands with {model}",
+anharmonicity constants#VPT2#{model},json,1/cm,"The VPT2 anharmonicity constants chi with {model}",

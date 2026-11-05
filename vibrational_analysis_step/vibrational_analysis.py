@@ -200,6 +200,7 @@ class VibrationalAnalysis(seamm.Node):
             route=P["hessian route"],
             who="Vibrational Analysis",
             print_to=printer,
+            precision="tight",
         )
         mc = driver.model_chemistry()
         if mc is None:
@@ -286,6 +287,15 @@ class VibrationalAnalysis(seamm.Node):
         result["energy"] = E0
         self._write_files(directory, harmonic, phi3, phi4, result)
         return result
+
+    #: The spreads between equivalent finite-difference routes (cm^-1) above
+    #: which the force constants are too noisy to trust to a few cm^-1
+    NOISE = {"cubic": 2.0, "quartic": 5.0}
+
+    @classmethod
+    def noisy(cls, spread):
+        """Whether the force constants are too noisy (see ``NOISE``)."""
+        return any(spread.get(key, 0.0) > limit for key, limit in cls.NOISE.items())
 
     @staticmethod
     def _in(value, units):
@@ -436,6 +446,17 @@ class VibrationalAnalysis(seamm.Node):
                 indent=self.indent + 4 * " ",
             )
         )
+        if self.noisy(spread):
+            printer.important(
+                __(
+                    "WARNING: the force constants are noisy, so the anharmonic "
+                    "results above may be off by several cm^-1 or more. The "
+                    "Hessians or gradients are not precise enough for the finite "
+                    "differences: tighten the method's convergence, use analytic "
+                    "Hessians if the method has them, or try a larger displacement.",
+                    indent=self.indent + 4 * " ",
+                )
+            )
         printer.normal("")
         return {
             "energy": result["energy"],

@@ -163,3 +163,9 @@ def test_degenerate_molecule_is_refused(tmp_path):
     xyz = [[0, 0, 0], [r, r, r], [-r, -r, r], [-r, r, -r], [r, -r, -r]]
     with pytest.raises(RuntimeError, match="spherical top"):
         node._harmonic(np.eye(15), [12.0, 1.008, 1.008, 1.008, 1.008], xyz)
+
+
+def test_noise_gate():
+    assert not VibrationalAnalysis.noisy({"cubic": 0.3, "quartic": 1.9})
+    assert VibrationalAnalysis.noisy({"cubic": 8.0, "quartic": 1.0})
+    assert VibrationalAnalysis.noisy({"cubic": 0.2, "quartic": 92.0})

@@ -435,6 +435,12 @@ def vpt2(
             type2.add((k, i, j))
             type2.add((k, j, i))
 
+    def resonant(f, a, b):
+        """Whether omega_f ~ omega_a + omega_b is a treated resonance: type 2,
+        or type 1 when a == b (omega_f ~ 2 omega_a), which enters the
+        off-diagonal chi through its k = i and k = j terms."""
+        return (f, a, b) in type2 or (a == b and (f, a) in type1)
+
     chi = np.zeros((n, n))
     chi0 = 0.0
     for i in range(n):
@@ -480,17 +486,17 @@ def vpt2(
             for k in range(n):
                 value -= phi_ijk[i, i, k] * phi_ijk[j, j, k] / omega[k]
                 wi, wj, wk = omega[i], omega[j], omega[k]
-                if (k, i, j) in type2:  # omega_k ~ omega_i + omega_j
+                if resonant(k, i, j):  # omega_k ~ omega_i + omega_j
                     d_ij = (
                         1 / (wi + wj + wk) + 1 / (-wi + wj + wk) + 1 / (wi - wj + wk)
                     ) / -2
                     d_0 = 1 / (wi + wj + wk) - 1 / (wi - wj + wk) - 1 / (-wi + wj + wk)
-                elif (i, j, k) in type2:  # omega_i ~ omega_j + omega_k
+                elif resonant(i, j, k):  # omega_i ~ omega_j + omega_k
                     d_ij = (
                         1 / (wi + wj + wk) - 1 / (wi + wj - wk) + 1 / (wi - wj + wk)
                     ) / -2
                     d_0 = 1 / (wi + wj + wk) - 1 / (wi + wj - wk) - 1 / (wi - wj + wk)
-                elif (j, i, k) in type2:  # omega_j ~ omega_i + omega_k
+                elif resonant(j, i, k):  # omega_j ~ omega_i + omega_k
                     d_ij = (
                         1 / (wi + wj + wk) - 1 / (wi + wj - wk) + 1 / (-wi + wj + wk)
                     ) / -2

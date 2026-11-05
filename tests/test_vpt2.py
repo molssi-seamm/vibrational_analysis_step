@@ -263,3 +263,29 @@ def test_h2o_against_orca():
     correction = result["zpe"] - result["g0"] - result["zpe_harmonic"]
     assert correction == pytest.approx(-73.224, abs=0.05)
     assert result["resonances"] == []
+
+
+def test_type1_resonance_is_deperturbed_in_off_diagonal_chi():
+    """omega_2 ~ 2 omega_1: the resonant denominator enters chi_12 through its
+    k = 1 term and must be removed there too (propane against Gaussian,
+    2026-11-05: chi was +2913 instead of -9.8 cm^-1 at a 0.26 cm^-1 mismatch).
+    The deperturbed chi_12 stays finite and smooth through the resonance."""
+    n = 2
+
+    def chi12(w2, fermi):
+        omega = np.array([1500.0, w2])
+        phi3 = np.zeros((n, n, n))
+        for p in {(0, 0, 1), (0, 1, 0), (1, 0, 0)}:
+            phi3[p] = 80.0
+        phi4 = np.diag([30.0, 60.0])
+        harmonic = SimpleNamespace(
+            omega=omega, B=np.zeros(3), zeta=np.zeros((3, n, n)), zpe=omega.sum() / 2
+        )
+        r = vpt2.vpt2(harmonic, phi3, phi4, fermi=fermi, gvpt2=False)
+        return r["chi"][0, 1], r["zpe"]
+
+    a, za = chi12(3000.1, True)
+    b, zb = chi12(3000.3, True)
+    assert abs(a) < 50 and abs(a - b) < 0.5 and abs(za - zb) < 0.5
+    plain, _ = chi12(3000.1, False)
+    assert abs(plain) > 1000

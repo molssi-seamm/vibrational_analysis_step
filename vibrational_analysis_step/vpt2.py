@@ -210,8 +210,9 @@ def displacements(harmonic, route="hessians", step=0.05):
     harmonic : Harmonic
     route : str
         'hessians' (2n geometries) or 'gradients' (2n^2 + 2n).
-    step : float
-        The displacement in dimensionless normal coordinates.
+    step : float or array (n,)
+        The displacement in dimensionless normal coordinates, the same for
+        every mode or one per mode (see :func:`mass_weighted_steps`).
 
     Returns
     -------
@@ -220,6 +221,7 @@ def displacements(harmonic, route="hessians", step=0.05):
         ``((1, -1), (4, 1))``; coordinates (N, 3) in bohr.
     """
     steps = STEPS[route]
+    step = _steps(harmonic, step)
     result = []
     for i in range(harmonic.n):
         for s in steps["single"]:
@@ -234,8 +236,31 @@ def displacements(harmonic, route="hessians", step=0.05):
 def _displace(harmonic, key, step):
     xyz = harmonic.coordinates.ravel().copy()
     for mode, steps in key:
-        xyz += harmonic.modes[:, mode] * step * steps
+        xyz += harmonic.modes[:, mode] * step[mode] * steps
     return xyz.reshape(-1, 3)
+
+
+def _steps(harmonic, step):
+    """The step of each mode, from a number or an array."""
+    step = np.asarray(step, dtype=float)
+    if step.ndim == 0:
+        return np.full(harmonic.n, float(step))
+    if step.shape != (harmonic.n,):
+        raise ValueError(f"{step.shape[0]} steps for {harmonic.n} modes")
+    return step
+
+
+def mass_weighted_steps(harmonic, size=0.025):
+    """Steps of the same size in mass-weighted Cartesian coordinates for every
+    mode (Gaussian's convention, 0.025 Å amu^1/2), as dimensionless steps:
+    q_i = Q sqrt(omega_i), so stiff modes get larger dimensionless steps and
+    floppy ones smaller. Against Gaussian 09 (2026-11-05) a uniform 0.05 was
+    too small for C-H stretches: Hessian noise dominated the quartic constants
+    (propane ZPE 44 cm^-1 off; 0.2 cm^-1 at a step like Gaussian's).
+    """
+    Q = size / BOHR_TO_ANGSTROM * np.sqrt(AMU_TO_ME)  # bohr m_e^1/2
+    omega_au = harmonic.omega / HARTREE_TO_CM
+    return Q * np.sqrt(omega_au)
 
 
 def force_constants_from_hessians(harmonic, hessians, step=0.05, reference=None):
@@ -247,8 +272,8 @@ def force_constants_from_hessians(harmonic, hessians, step=0.05, reference=None)
     harmonic : Harmonic
     hessians : dict
         Cartesian Hessians (E_h/bohr^2) by the keys from :func:`displacements`.
-    step : float
-        The displacement used.
+    step : float or array (n,)
+        The displacement(s) used.
     reference : array, optional
         The Hessian at the reference geometry at the same level as the displaced
         ones (mixed levels); by default the harmonic one's diagonal, omega.
@@ -263,6 +288,7 @@ def force_constants_from_hessians(harmonic, hessians, step=0.05, reference=None)
         agree ('cubic', 'quartic'), cm^-1: a measure of the numerical noise.
     """
     n = harmonic.n
+    d = _steps(harmonic, step)
     h0 = harmonic.omega if reference is None else np.diag(harmonic.to_normal(reference))
     plus = {i: harmonic.to_normal(hessians[((i, 1),)]) for i in range(n)}
     minus = {i: harmonic.to_normal(hessians[((i, -1),)]) for i in range(n)}
@@ -272,9 +298,9 @@ def force_constants_from_hessians(harmonic, hessians, step=0.05, reference=None)
     for i in range(n):
         # Displace along i, read the (j, k) element; the other permutations of
         # (i, j, k) are independent routes through j and k.
-        phi_ijk[i] = (plus[i] - minus[i]) / (2 * step)
+        phi_ijk[i] = (plus[i] - minus[i]) / (2 * d[i])
         # Displace along i, read the (j, j) element: phi_jjii
-        phi_iijj[:, i] = (np.diag(plus[i]) + np.diag(minus[i]) - 2 * h0) / step**2
+        phi_iijj[:, i] = (np.diag(plus[i]) + np.diag(minus[i]) - 2 * h0) / d[i] ** 2
     return _symmetrize(phi_ijk, phi_iijj)
 
 
@@ -288,8 +314,8 @@ def force_constants_from_gradients(harmonic, gradients, step=0.05, reference=Non
     gradients : dict
         Cartesian gradients (E_h/bohr) by the keys from :func:`displacements`
         with route 'gradients'.
-    step : float
-        The displacement used.
+    step : float or array (n,)
+        The displacement(s) used.
     reference : array, optional
         The gradient at the reference geometry (zero at the minimum by default).
 
@@ -298,6 +324,7 @@ def force_constants_from_gradients(harmonic, gradients, step=0.05, reference=Non
     As :func:`force_constants_from_hessians`.
     """
     n = harmonic.n
+    d = _steps(harmonic, step)
     g = {key: harmonic.gradient_to_normal(value) for key, value in gradients.items()}
     g0 = np.zeros(n) if reference is None else harmonic.gradient_to_normal(reference)
 
@@ -310,10 +337,10 @@ def force_constants_from_gradients(harmonic, gradients, step=0.05, reference=Non
     for i in range(n):
         gp, gn = get((i, 1)), get((i, -1))
         g3p, g3n = get((i, 3)), get((i, -3))
-        phi_iijj[i, i] = (g3p[i] - 3 * gp[i] + 3 * gn[i] - g3n[i]) / (8 * step**3)
+        phi_iijj[i, i] = (g3p[i] - 3 * gp[i] + 3 * gn[i] - g3n[i]) / (8 * d[i] ** 3)
         # Second difference of the gradient along i: phi_kii for every k, in
         # all three of its positions (there is only this one route to it)
-        phi_kii = (gp + gn - 2 * g0) / step**2
+        phi_kii = (gp + gn - 2 * g0) / d[i] ** 2
         phi_ijk[:, i, i] = phi_kii
         phi_ijk[i, :, i] = phi_kii
         phi_ijk[i, i, :] = phi_kii
@@ -322,7 +349,7 @@ def force_constants_from_gradients(harmonic, gradients, step=0.05, reference=Non
         np_, nn = get((i, -1), (j, 1)), get((i, -1), (j, -1))
         gp, gn = get((i, 1)), get((i, -1))
         phi_iijj[i, j] = (pp[i] + pn[i] - 2 * gp[i] - np_[i] - nn[i] + 2 * gn[i]) / (
-            2 * step**3
+            2 * d[i] * d[j] ** 2
         )
     for i, j, k in itertools.permutations(range(n), 3):
         pp, nn = get((j, 1), (k, 1)), get((j, -1), (k, -1))
@@ -330,7 +357,7 @@ def force_constants_from_gradients(harmonic, gradients, step=0.05, reference=Non
         pk, nk = get((k, 1)), get((k, -1))
         phi_ijk[i, j, k] = (
             pp[i] + nn[i] + 2 * g0[i] - pj[i] - pk[i] - nj[i] - nk[i]
-        ) / (2 * step**2)
+        ) / (2 * d[j] * d[k])
     return _symmetrize(phi_ijk, phi_iijj)
 
 

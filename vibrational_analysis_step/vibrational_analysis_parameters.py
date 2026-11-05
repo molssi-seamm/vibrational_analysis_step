@@ -138,16 +138,20 @@ class VibrationalAnalysisParameters(seamm.Parameters):
             ),
         },
         "displacement": {
-            "default": 0.05,
+            "default": "automatic",
             "kind": "float",
             "default_units": "",
-            "enumeration": tuple(),
+            "enumeration": ("automatic", "mass-weighted"),
             "format_string": ".3f",
             "description": "Displacement:",
             "help_text": (
                 "The step along each normal mode, in dimensionless (reduced) normal "
-                "coordinates. 0.05 is the usual choice: larger steps add higher-order "
-                "error, smaller ones numerical noise."
+                "coordinates. 'automatic' is 0.20 for Hessians and 0.10 for "
+                "gradients (whose quartic constants use steps up to 3 times as "
+                "large); 'mass-weighted' is Gaussian's 0.025 Å amu^1/2 for every "
+                "mode. Smaller steps amplify the noise in the Hessians or gradients, "
+                "larger ones add higher-order error. Against Gaussian 09 for "
+                "propane, 0.05 gave a ZPE 44 cm^-1 off, 0.20 0.2 cm^-1."
             ),
         },
         "resonances": {

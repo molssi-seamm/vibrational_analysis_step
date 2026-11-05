@@ -121,8 +121,11 @@ def test_hessian_route(configuration, tmp_path, monkeypatch):
     # The core directly, at the exact minimum
     xyz = model.model_minimum()
     harmonic = vpt2.Harmonic(model.model_hessian(xyz), model.MASSES, xyz)
-    data = {k: model.model_hessian(x) for k, x in vpt2.displacements(harmonic)}
-    phi3, phi4, _ = vpt2.force_constants_from_hessians(harmonic, data)
+    step = node.STEP["Hessians"]
+    data = {
+        k: model.model_hessian(x) for k, x in vpt2.displacements(harmonic, step=step)
+    }
+    phi3, phi4, _ = vpt2.force_constants_from_hessians(harmonic, data, step)
     ref = vpt2.vpt2(harmonic, phi3, phi4)
     assert np.allclose(result["omega"], ref["omega"], atol=0.05)
     assert np.allclose(result["nu"], ref["nu"], atol=0.1)
@@ -141,8 +144,10 @@ def test_gradient_route_agrees(configuration, tmp_path, monkeypatch):
     _, engine, grad = run_analysis(configuration, tmp_path, monkeypatch, False)
     assert grad["derivatives"] == "gradients"
     assert grad["hessian"] == "finite differences over MDI" and engine.n_hessians == 0
-    assert np.allclose(grad["nu"], hes["nu"], atol=0.5)
-    assert grad["zpe"] == pytest.approx(hes["zpe"], abs=0.3)
+    # Different default steps (0.20 and 0.10): the higher-order (truncation)
+    # error of this strongly anharmonic model differs by up to ~0.75 cm^-1
+    assert np.allclose(grad["nu"], hes["nu"], atol=1.0)
+    assert grad["zpe"] == pytest.approx(hes["zpe"], abs=0.5)
 
 
 def test_analyze_and_results(configuration, tmp_path, monkeypatch):
@@ -167,5 +172,16 @@ def test_degenerate_molecule_is_refused(tmp_path):
 
 def test_noise_gate():
     assert not VibrationalAnalysis.noisy({"cubic": 0.3, "quartic": 1.9})
-    assert VibrationalAnalysis.noisy({"cubic": 8.0, "quartic": 1.0})
+    # A large cubic spread at the default steps is truncation, not noise
+    assert not VibrationalAnalysis.noisy({"cubic": 8.0, "quartic": 1.0})
     assert VibrationalAnalysis.noisy({"cubic": 0.2, "quartic": 92.0})
+
+
+def test_default_steps():
+    node = VibrationalAnalysis()
+    assert node._step("automatic", None, "Hessians") == 0.20
+    assert node._step("automatic", None, "gradients") == 0.10
+    assert node._step(0.07, None, "Hessians") == 0.07
+    h = types.SimpleNamespace(omega=np.array([200.0, 3000.0]))
+    steps = node._step("mass-weighted", h, "Hessians")
+    assert steps[0] < steps[1] and steps[1] == pytest.approx(0.236, abs=0.005)

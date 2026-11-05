@@ -123,10 +123,16 @@ class VibrationalAnalysis(seamm.Node):
         )
         if P["optimize"] in (True, "yes"):
             text += f" The structure is first optimized to forces below {P['fmax']}."
+        if P["displacement"] == "automatic":
+            size = "0.20 (Hessians) or 0.10 (gradients)"
+        elif P["displacement"] == "mass-weighted":
+            size = "0.025 Å amu^1/2 (mass-weighted)"
+        else:
+            size = str(P["displacement"])
         text += (
             f" Then {P['derivatives']} derivatives at structures displaced by "
-            f"{P['displacement']} along each normal mode give the cubic and quartic "
-            "force constants."
+            f"{size} along each normal mode give the cubic and quartic force "
+            "constants."
         )
         resonances = str(P["resonances"])
         if resonances.startswith("GVPT2"):
@@ -210,7 +216,6 @@ class VibrationalAnalysis(seamm.Node):
             )
         self.model = mc["level"]
         masses = np.asarray(configuration.atoms.atomic_masses, dtype=float)
-        step = float(P["displacement"])
         optimize = P["optimize"] in (True, "yes")
         fmax = P["fmax"].m_as("eV/Å") if hasattr(P["fmax"], "m_as") else P["fmax"]
 
@@ -229,6 +234,7 @@ class VibrationalAnalysis(seamm.Node):
                 E0, H0, how = driver.fd_hessian_tasks(evaluator, configuration, coords)
                 harmonic = self._harmonic(H0, masses, coords)
                 derivatives = "gradients"
+                step = self._step(P["displacement"], harmonic, derivatives)
                 phi3, phi4, spread = self._from_gradients(
                     driver, evaluator, configuration, harmonic, step, None
                 )
@@ -242,6 +248,7 @@ class VibrationalAnalysis(seamm.Node):
                 derivatives = P["derivatives"]
                 if derivatives == "automatic":
                     derivatives = "Hessians" if session.analytic else "gradients"
+                step = self._step(P["displacement"], harmonic, derivatives)
                 if derivatives == "Hessians":
                     if not session.analytic:
                         printer.important(
@@ -289,8 +296,24 @@ class VibrationalAnalysis(seamm.Node):
         return result
 
     #: The spreads between equivalent finite-difference routes (cm^-1) above
-    #: which the force constants are too noisy to trust to a few cm^-1
-    NOISE = {"cubic": 2.0, "quartic": 5.0}
+    #: which the force constants are too noisy to trust to a few cm^-1. Only
+    #: the quartic spread: it grows with noise as 1/step^2 (Hessians) or
+    #: 1/step^3 (gradients), while the cubic spread at the default steps is
+    #: mostly the higher-order (truncation) error, harmless (propane, 0.20:
+    #: cubic 6.6, quartic 3.4 cm^-1, ZPE within 0.2 cm^-1 of Gaussian's).
+    NOISE = {"quartic": 5.0}
+
+    #: The default steps, dimensionless (2026-11-05, against Gaussian 09)
+    STEP = {"Hessians": 0.20, "gradients": 0.10}
+
+    def _step(self, value, harmonic, derivatives):
+        """The step(s) for the displacements: a number, 'automatic' or
+        'mass-weighted'."""
+        if value == "automatic":
+            return self.STEP[derivatives]
+        if value == "mass-weighted":
+            return vpt2.mass_weighted_steps(harmonic)
+        return float(value)
 
     @classmethod
     def noisy(cls, spread):

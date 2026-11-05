@@ -289,3 +289,28 @@ def test_type1_resonance_is_deperturbed_in_off_diagonal_chi():
     assert abs(a) < 50 and abs(a - b) < 0.5 and abs(za - zb) < 0.5
     plain, _ = chi12(3000.1, False)
     assert abs(plain) > 1000
+
+
+def test_per_mode_steps(water):
+    """Per-mode steps (Gaussian's mass-weighted convention) give the same
+    force constants as a uniform step, by both routes."""
+    _, harmonic = water
+    steps = vpt2.mass_weighted_steps(harmonic)
+    # Larger dimensionless steps for stiffer modes; 0.025 A amu^1/2 ~ 0.24 at
+    # 3000 cm^-1
+    assert np.all(np.diff(steps) > 0)
+    assert vpt2.mass_weighted_steps(
+        SimpleNamespace(omega=np.array([3000.0]))
+    ) == pytest.approx(0.236, abs=0.005)
+    ref = run_route(harmonic, "hessians", 0.05)[3]
+    for route in ("hessians", "gradients"):
+        geometries = vpt2.displacements(harmonic, route, steps)
+        if route == "hessians":
+            data = {k: model_hessian(x) for k, x in geometries}
+            f3, f4, _ = vpt2.force_constants_from_hessians(harmonic, data, steps)
+        else:
+            data = {k: model_gradient(x) for k, x in geometries}
+            f3, f4, _ = vpt2.force_constants_from_gradients(harmonic, data, steps)
+        r = vpt2.vpt2(harmonic, f3, f4)
+        assert np.allclose(r["nu"], ref["nu"], atol=1.0), route
+        assert r["zpe"] == pytest.approx(ref["zpe"], abs=0.5)

@@ -9,7 +9,9 @@ A SEAMM plug-in for Vibrational Analysis
 # the vibrational_analysis_step package.
 
 from .vibrational_analysis import VibrationalAnalysis  # noqa: F401, E501
-from .vibrational_analysis_parameters import VibrationalAnalysisParameters  # noqa: F401, E501
+from .vibrational_analysis_parameters import (  # noqa: F401
+    VibrationalAnalysisParameters,
+)
 from .vibrational_analysis_step import VibrationalAnalysisStep  # noqa: F401, E501
 from .tk_vibrational_analysis import TkVibrationalAnalysis  # noqa: F401, E501
 

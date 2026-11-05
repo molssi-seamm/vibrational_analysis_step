@@ -2,6 +2,7 @@ include AUTHORS.rst
 include CONTRIBUTING.rst
 include HISTORY.rst
 include LICENSE
+include THIRD_PARTY_LICENSES.rst
 include README.rst
 include requirements*
 include versioneer.py

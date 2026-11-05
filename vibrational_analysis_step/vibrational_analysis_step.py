@@ -63,7 +63,9 @@ class VibrationalAnalysisStep(object):
         VibrationalAnalysis
         """
 
-        return vibrational_analysis_step.VibrationalAnalysis(flowchart=flowchart, **kwargs)
+        return vibrational_analysis_step.VibrationalAnalysis(
+            flowchart=flowchart, **kwargs
+        )
 
     def create_tk_node(self, canvas=None, **kwargs):
         """Create and return the graphical Tk node object.

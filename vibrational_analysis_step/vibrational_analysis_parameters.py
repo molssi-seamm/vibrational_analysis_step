@@ -70,7 +70,8 @@ class VibrationalAnalysisParameters(seamm.Parameters):
 
     See Also
     --------
-    VibrationalAnalysis, TkVibrationalAnalysis, VibrationalAnalysis VibrationalAnalysisParameters, Vibrational AnalysisStep
+    VibrationalAnalysis, TkVibrationalAnalysis, VibrationalAnalysisParameters,
+    VibrationalAnalysisStep
     """
 
     parameters = {

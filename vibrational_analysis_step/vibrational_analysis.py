@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Non-graphical part of the Vibrational Analysis step in a SEAMM flowchart
-"""
+"""Non-graphical part of the Vibrational Analysis step in a SEAMM flowchart"""
 
 import logging
 from pathlib import Path
@@ -64,7 +63,7 @@ class VibrationalAnalysis(seamm.Node):
         flowchart=None,
         title="Vibrational Analysis",
         extension=None,
-        logger=logger
+        logger=logger,
     ):
         """A step for Vibrational Analysis in a SEAMM flowchart.
 
@@ -206,7 +205,8 @@ class VibrationalAnalysis(seamm.Node):
         """
         printer.normal(
             __(
-                "This is a placeholder for the results from the Vibrational Analysis step",
+                "This is a placeholder for the results from the Vibrational Analysis "
+                "step",
                 indent=4 * " ",
                 wrap=True,
                 dedent=False,

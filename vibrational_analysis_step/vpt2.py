@@ -71,6 +71,11 @@ class Harmonic:
     degenerate_tolerance : float
         Relative tolerance for equal principal moments of inertia, which mark a
         linear molecule or a symmetric or spherical top.
+    allow_degenerate : bool
+        Accept symmetric and spherical tops, whose degenerate vibrations need
+        formulas not implemented yet: only the zero-point energy is then
+        right (it does not depend on how the components of a degenerate mode
+        are chosen). Linear molecules are always refused.
 
     Attributes
     ----------
@@ -85,9 +90,20 @@ class Harmonic:
         Rotational constants, cm^-1, A >= B >= C.
     zeta : array (3, n, n)
         Coriolis coupling constants about the principal axes of B.
+    degenerate : bool
+        Whether the molecule is a symmetric or spherical top.
+    degenerate_sets : [[int]]
+        The modes of each degenerate vibration (two or three components).
     """
 
-    def __init__(self, hessian, masses, coordinates, degenerate_tolerance=1.0e-3):
+    def __init__(
+        self,
+        hessian,
+        masses,
+        coordinates,
+        degenerate_tolerance=1.0e-3,
+        allow_degenerate=False,
+    ):
         H = np.asarray(hessian, dtype=float)
         masses = np.asarray(masses, dtype=float)
         xyz = np.asarray(coordinates, dtype=float).reshape(-1, 3)
@@ -117,7 +133,8 @@ class Harmonic:
         self.moments = moments
         self.axes = axes
         self.rotor = _rotor_type(moments, degenerate_tolerance)
-        if self.rotor != "asymmetric top":
+        self.degenerate = self.rotor != "asymmetric top"
+        if self.rotor == "linear" or (self.degenerate and not allow_degenerate):
             raise DegenerateModesError(
                 f"The molecule is a {self.rotor}, so it has degenerate vibrations. "
                 "VPT2 here handles only asymmetric tops so far: the formulas for "
@@ -159,6 +176,7 @@ class Harmonic:
         self.omega = omega_au * HARTREE_TO_CM
         self.modes = self.L / sqrt_m[:, None] / np.sqrt(omega_au)[None, :]
         self.n = len(self.omega)
+        self.degenerate_sets = _degenerate_sets(self.omega) if self.degenerate else []
 
         # Coriolis constants about the principal axes
         epsilon = np.zeros((3, 3, 3))
@@ -184,6 +202,23 @@ class Harmonic:
         """A Cartesian gradient (E_h/bohr) in dimensionless normal coordinates,
         cm^-1."""
         return self.modes.T @ np.asarray(gradient, dtype=float).ravel() * HARTREE_TO_CM
+
+
+def _degenerate_sets(omega, tolerance=1.0):
+    """Groups of modes whose frequencies agree within ``tolerance`` cm^-1 (or
+    1e-3 relative): the components of degenerate vibrations, split slightly
+    by the numerical Hessian."""
+    sets, current = [], [0]
+    for i in range(1, len(omega)):
+        if omega[i] - omega[current[-1]] <= max(tolerance, 1e-3 * omega[i]):
+            current.append(i)
+        else:
+            if len(current) > 1:
+                sets.append(current)
+            current = [i]
+    if len(current) > 1:
+        sets.append(current)
+    return sets
 
 
 def _rotor_type(moments, tolerance):
@@ -606,4 +641,6 @@ def vpt2(
         "g0": g0,
         "resonances": resonances,
         "flagged": [i for i in range(n) if omega[i] < low_mode],
+        "zpe_only": bool(getattr(harmonic, "degenerate", False)),
+        "degenerate_sets": list(getattr(harmonic, "degenerate_sets", [])),
     }

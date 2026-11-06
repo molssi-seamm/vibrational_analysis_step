@@ -329,8 +329,13 @@ class VibrationalAnalysis(seamm.Node):
         """The harmonic analysis; a clear error for molecules VPT2 here cannot
         treat."""
         try:
+            # Symmetric and spherical tops: the ZPE only (validated against
+            # Gaussian 09, 2026-11-05); linear molecules are refused
             return vpt2.Harmonic(
-                H0, masses, np.asarray(coords_ang) / vpt2.BOHR_TO_ANGSTROM
+                H0,
+                masses,
+                np.asarray(coords_ang) / vpt2.BOHR_TO_ANGSTROM,
+                allow_degenerate=True,
             )
         except (vpt2.DegenerateModesError, vpt2.NotAMinimumError) as e:
             raise RuntimeError(f"Vibrational Analysis: {e}") from None
@@ -401,6 +406,9 @@ class VibrationalAnalysis(seamm.Node):
         nu = np.asarray(result["nu"])
         flagged = set(result["flagged"])
         resonant = {r["fundamental"] for r in result["resonances"]}
+        zpe_only = result.get("zpe_only", False)
+        if zpe_only:
+            return self._analyze_zpe_only(result)
         lines = [
             "",
             "    Mode   Harmonic   Anharmonic      Shift   Overtone",
@@ -497,5 +505,74 @@ class VibrationalAnalysis(seamm.Node):
                 for r in result["resonances"]
             ),
             "flagged modes": [i + 1 for i in sorted(flagged)],
+            "n_modes": len(omega),
+        }
+
+    def _analyze_zpe_only(self, result):
+        """A symmetric or spherical top: the zero-point energy only. The VPT2 ZPE
+        does not depend on how the components of a degenerate vibration are
+        chosen, but its fundamentals and overtones need the degenerate-mode
+        formulas, not implemented yet."""
+        cm_to_kj = vpt2.CM_TO_KJMOL
+        omega = np.asarray(result["omega"])
+        sets = result.get("degenerate_sets", [])
+        zpe_h, zpe = result["zpe_harmonic"], result["zpe"]
+        in_set = {i: k for k, s in enumerate(sets) for i in s}
+        lines = [
+            "",
+            "    Mode   Harmonic",
+            "             (cm^-1)",
+            "    ----   --------",
+        ]
+        for i, w in enumerate(omega):
+            note = f"   (degenerate set {in_set[i] + 1})" if i in in_set else ""
+            lines.append(f"    {i + 1:4d}   {w:8.2f}{note}")
+        printer.normal(
+            __(
+                "This molecule is a symmetric or spherical top, so it has degenerate "
+                "vibrations. Only the anharmonic zero-point energy is computed: it "
+                "does not depend on how the components of a degenerate vibration are "
+                "chosen, while the anharmonic fundamentals and overtones of "
+                "degenerate modes need formulas not implemented yet. The harmonic "
+                f"Hessian ({result['hessian']}) gives these frequencies:",
+                indent=self.indent + 4 * " ",
+            )
+        )
+        printer.normal("\n".join(lines))
+        printer.normal("")
+        printer.normal(
+            __(
+                f"Zero-point energy: harmonic {zpe_h * cm_to_kj:.3f} kJ/mol, "
+                f"anharmonic {zpe * cm_to_kj:.3f} kJ/mol (correction "
+                f"{(zpe - zpe_h) * cm_to_kj:.3f} kJ/mol, {zpe - zpe_h:.2f} cm^-1, "
+                f"including G0 = {result['g0']:.2f} cm^-1).",
+                indent=self.indent + 4 * " ",
+            )
+        )
+        spread = result["spread"]
+        printer.normal(
+            __(
+                "Numerical noise: equivalent finite-difference routes to the force "
+                f"constants differ by up to {spread['cubic']:.2f} cm^-1 (cubic) and "
+                f"{spread['quartic']:.2f} cm^-1 (quartic).",
+                indent=self.indent + 4 * " ",
+            )
+        )
+        if self.noisy(spread):
+            printer.important(
+                __(
+                    "WARNING: the force constants are noisy, so the anharmonic "
+                    "zero-point energy may be off by several cm^-1 or more.",
+                    indent=self.indent + 4 * " ",
+                )
+            )
+        printer.normal("")
+        return {
+            "energy": result["energy"],
+            "ZPE": zpe * cm_to_kj,
+            "harmonic ZPE": zpe_h * cm_to_kj,
+            "ZPE correction": (zpe - zpe_h) * cm_to_kj,
+            "G0": result["g0"],
+            "harmonic frequencies": omega.tolist(),
             "n_modes": len(omega),
         }

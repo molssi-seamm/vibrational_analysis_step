@@ -26,7 +26,8 @@ SEAMM Vibrational Analysis Plug-in
    :target: https://pypi.python.org/pypi/vibrational_analysis_step
    :alt: PyPi VERSION
 
-A SEAMM plug-in for Vibrational Analysis
+A SEAMM plug-in for anharmonic vibrational analysis: VPT2 frequencies and zero-point
+energies with any Model Chemistry.
 
 * Free software: BSD-3-Clause
 * Documentation: https://molssi-seamm.github.io/vibrational_analysis_step/index.html

@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>History &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5 documentation</title>
+    <title>History &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="_static/documentation_options.js?v=e86bfd1c"></script>
+    <script src="_static/documentation_options.js?v=049996ac"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -54,7 +54,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.5" />
+  <meta name="docsearch:version" content="2026.11.5.1" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -511,6 +511,16 @@
   <section id="history">
 <h1>History<a class="headerlink" href="#history" title="Link to this heading">#</a></h1>
 <dl class="simple">
+<dt>2026.11.5.1 – Zero-point energies of symmetric and spherical tops</dt><dd><ul class="simple">
+<li><p>Molecules with degenerate vibrations, symmetric tops such as NH3 and ethane and
+spherical tops such as CH4, are no longer refused: the step gives their
+anharmonic zero-point energy and harmonic frequencies. The anharmonic fundamentals
+and constants of degenerate modes are not available yet. Linear molecules are
+still refused.</p></li>
+<li><p>Validated against Gaussian 09 to about 1 cm^-1 by giving the molecules
+slightly asymmetric masses, where Gaussian uses the general formulas.</p></li>
+</ul>
+</dd>
 <dt>2026.11.5 – Initial release: anharmonic frequencies (VPT2) with any Model Chemistry</dt><dd><ul class="simple">
 <li><p>Anharmonic fundamentals, overtones, combination bands and the anharmonic zero-point
 energy by second-order vibrational perturbation theory, with Fermi resonances

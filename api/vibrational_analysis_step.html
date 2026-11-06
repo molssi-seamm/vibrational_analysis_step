@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>vibrational_analysis_step package &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5 documentation</title>
+    <title>vibrational_analysis_step package &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=e86bfd1c"></script>
+    <script src="../_static/documentation_options.js?v=049996ac"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.5" />
+  <meta name="docsearch:version" content="2026.11.5.1" />
   
     
     <script src="../_static/searchtools.js"></script>
@@ -1185,7 +1185,7 @@ BSD-3-Clause; see THIRD_PARTY_LICENSES.rst).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="vibrational_analysis_step.vpt2.Harmonic">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vibrational_analysis_step.vpt2.</span></span><span class="sig-name descname"><span class="pre">Harmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hessian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degenerate_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vibrational_analysis_step/vpt2.html#Harmonic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vibrational_analysis_step.vpt2.Harmonic" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vibrational_analysis_step.vpt2.</span></span><span class="sig-name descname"><span class="pre">Harmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hessian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masses</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degenerate_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_degenerate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vibrational_analysis_step/vpt2.html#Harmonic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vibrational_analysis_step.vpt2.Harmonic" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The harmonic analysis at a minimum.</p>
 <dl class="field-list simple">
@@ -1196,6 +1196,10 @@ BSD-3-Clause; see THIRD_PARTY_LICENSES.rst).</p>
 <li><p><strong>coordinates</strong> (<em>array</em><em> (</em><em>N</em><em>, </em><em>3</em><em>)</em>) – The coordinates, bohr.</p></li>
 <li><p><strong>degenerate_tolerance</strong> (<em>float</em>) – Relative tolerance for equal principal moments of inertia, which mark a
 linear molecule or a symmetric or spherical top.</p></li>
+<li><p><strong>allow_degenerate</strong> (<em>bool</em>) – Accept symmetric and spherical tops, whose degenerate vibrations need
+formulas not implemented yet: only the zero-point energy is then
+right (it does not depend on how the components of a degenerate mode
+are chosen). Linear molecules are always refused.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1251,6 +1255,28 @@ normal coordinate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>array (3, n, n)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vibrational_analysis_step.vpt2.Harmonic.degenerate">
+<span class="sig-name descname"><span class="pre">degenerate</span></span><a class="headerlink" href="#vibrational_analysis_step.vpt2.Harmonic.degenerate" title="Link to this definition">#</a></dt>
+<dd><p>Whether the molecule is a symmetric or spherical top.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vibrational_analysis_step.vpt2.Harmonic.degenerate_sets">
+<span class="sig-name descname"><span class="pre">degenerate_sets</span></span><a class="headerlink" href="#vibrational_analysis_step.vpt2.Harmonic.degenerate_sets" title="Link to this definition">#</a></dt>
+<dd><p>The modes of each degenerate vibration (two or three components).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[[int]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1565,6 +1591,8 @@ A SEAMM plug-in for Vibrational Analysis</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational_analysis_step.vpt2.Harmonic.modes"><code class="docutils literal notranslate"><span class="pre">Harmonic.modes</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational_analysis_step.vpt2.Harmonic.B"><code class="docutils literal notranslate"><span class="pre">Harmonic.B</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational_analysis_step.vpt2.Harmonic.zeta"><code class="docutils literal notranslate"><span class="pre">Harmonic.zeta</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational_analysis_step.vpt2.Harmonic.degenerate"><code class="docutils literal notranslate"><span class="pre">Harmonic.degenerate</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational_analysis_step.vpt2.Harmonic.degenerate_sets"><code class="docutils literal notranslate"><span class="pre">Harmonic.degenerate_sets</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational_analysis_step.vpt2.Harmonic.gradient_to_normal"><code class="docutils literal notranslate"><span class="pre">Harmonic.gradient_to_normal()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational_analysis_step.vpt2.Harmonic.to_normal"><code class="docutils literal notranslate"><span class="pre">Harmonic.to_normal()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational_analysis_step.vpt2.Harmonic.zpe"><code class="docutils literal notranslate"><span class="pre">Harmonic.zpe</span></code></a></li>

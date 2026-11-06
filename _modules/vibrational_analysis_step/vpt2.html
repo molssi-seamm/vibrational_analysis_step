@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vibrational_analysis_step.vpt2 &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5 documentation</title>
+    <title>vibrational_analysis_step.vpt2 &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=e86bfd1c"></script>
+    <script src="../../_static/documentation_options.js?v=049996ac"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.5" />
+  <meta name="docsearch:version" content="2026.11.5.1" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -572,6 +572,11 @@
 <span class="sd">    degenerate_tolerance : float</span>
 <span class="sd">        Relative tolerance for equal principal moments of inertia, which mark a</span>
 <span class="sd">        linear molecule or a symmetric or spherical top.</span>
+<span class="sd">    allow_degenerate : bool</span>
+<span class="sd">        Accept symmetric and spherical tops, whose degenerate vibrations need</span>
+<span class="sd">        formulas not implemented yet: only the zero-point energy is then</span>
+<span class="sd">        right (it does not depend on how the components of a degenerate mode</span>
+<span class="sd">        are chosen). Linear molecules are always refused.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -586,9 +591,20 @@
 <span class="sd">        Rotational constants, cm^-1, A &gt;= B &gt;= C.</span>
 <span class="sd">    zeta : array (3, n, n)</span>
 <span class="sd">        Coriolis coupling constants about the principal axes of B.</span>
+<span class="sd">    degenerate : bool</span>
+<span class="sd">        Whether the molecule is a symmetric or spherical top.</span>
+<span class="sd">    degenerate_sets : [[int]]</span>
+<span class="sd">        The modes of each degenerate vibration (two or three components).</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hessian</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">degenerate_tolerance</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">hessian</span><span class="p">,</span>
+        <span class="n">masses</span><span class="p">,</span>
+        <span class="n">coordinates</span><span class="p">,</span>
+        <span class="n">degenerate_tolerance</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span>
+        <span class="n">allow_degenerate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">masses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">xyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -618,7 +634,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">moments</span> <span class="o">=</span> <span class="n">moments</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rotor</span> <span class="o">=</span> <span class="n">_rotor_type</span><span class="p">(</span><span class="n">moments</span><span class="p">,</span> <span class="n">degenerate_tolerance</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotor</span> <span class="o">!=</span> <span class="s2">"asymmetric top"</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">degenerate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotor</span> <span class="o">!=</span> <span class="s2">"asymmetric top"</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotor</span> <span class="o">==</span> <span class="s2">"linear"</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">degenerate</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">allow_degenerate</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">DegenerateModesError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">"The molecule is a </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rotor</span><span class="si">}</span><span class="s2">, so it has degenerate vibrations. "</span>
                 <span class="s2">"VPT2 here handles only asymmetric tops so far: the formulas for "</span>
@@ -660,6 +677,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">=</span> <span class="n">omega_au</span> <span class="o">*</span> <span class="n">HARTREE_TO_CM</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">/</span> <span class="n">sqrt_m</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">omega_au</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">degenerate_sets</span> <span class="o">=</span> <span class="n">_degenerate_sets</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">degenerate</span> <span class="k">else</span> <span class="p">[]</span>
 
         <span class="c1"># Coriolis constants about the principal axes</span>
         <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -692,6 +710,23 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gradient</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="n">HARTREE_TO_CM</span></div>
 </div>
 
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_degenerate_sets</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Groups of modes whose frequencies agree within ``tolerance`` cm^-1 (or</span>
+<span class="sd">    1e-3 relative): the components of degenerate vibrations, split slightly</span>
+<span class="sd">    by the numerical Hessian."""</span>
+    <span class="n">sets</span><span class="p">,</span> <span class="n">current</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">omega</span><span class="p">[</span><span class="n">current</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">tolerance</span><span class="p">,</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="n">current</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sets</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_rotor_type</span><span class="p">(</span><span class="n">moments</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">):</span>
@@ -1131,6 +1166,8 @@
         <span class="s2">"g0"</span><span class="p">:</span> <span class="n">g0</span><span class="p">,</span>
         <span class="s2">"resonances"</span><span class="p">:</span> <span class="n">resonances</span><span class="p">,</span>
         <span class="s2">"flagged"</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">low_mode</span><span class="p">],</span>
+        <span class="s2">"zpe_only"</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="s2">"degenerate"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)),</span>
+        <span class="s2">"degenerate_sets"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="s2">"degenerate_sets"</span><span class="p">,</span> <span class="p">[])),</span>
     <span class="p">}</span></div>
 
 </pre></div>

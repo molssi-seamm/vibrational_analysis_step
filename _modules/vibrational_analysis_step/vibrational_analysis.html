@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vibrational_analysis_step.vibrational_analysis &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5 documentation</title>
+    <title>vibrational_analysis_step.vibrational_analysis &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5.1 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=e86bfd1c"></script>
+    <script src="../../_static/documentation_options.js?v=049996ac"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,7 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.5" />
+  <meta name="docsearch:version" content="2026.11.5.1" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -836,8 +836,13 @@
 <span class="w">        </span><span class="sd">"""The harmonic analysis; a clear error for molecules VPT2 here cannot</span>
 <span class="sd">        treat."""</span>
         <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Symmetric and spherical tops: the ZPE only (validated against</span>
+            <span class="c1"># Gaussian 09, 2026-11-05); linear molecules are refused</span>
             <span class="k">return</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">Harmonic</span><span class="p">(</span>
-                <span class="n">H0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coords_ang</span><span class="p">)</span> <span class="o">/</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">BOHR_TO_ANGSTROM</span>
+                <span class="n">H0</span><span class="p">,</span>
+                <span class="n">masses</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coords_ang</span><span class="p">)</span> <span class="o">/</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">BOHR_TO_ANGSTROM</span><span class="p">,</span>
+                <span class="n">allow_degenerate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">except</span> <span class="p">(</span><span class="n">vpt2</span><span class="o">.</span><span class="n">DegenerateModesError</span><span class="p">,</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">NotAMinimumError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Vibrational Analysis: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
@@ -910,6 +915,9 @@
         <span class="n">nu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"nu"</span><span class="p">])</span>
         <span class="n">flagged</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"flagged"</span><span class="p">])</span>
         <span class="n">resonant</span> <span class="o">=</span> <span class="p">{</span><span class="n">r</span><span class="p">[</span><span class="s2">"fundamental"</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">]}</span>
+        <span class="n">zpe_only</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"zpe_only"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">zpe_only</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_zpe_only</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s2">""</span><span class="p">,</span>
             <span class="s2">"    Mode   Harmonic   Anharmonic      Shift   Overtone"</span><span class="p">,</span>
@@ -1008,7 +1016,76 @@
             <span class="s2">"flagged modes"</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">flagged</span><span class="p">)],</span>
             <span class="s2">"n_modes"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega</span><span class="p">),</span>
         <span class="p">}</span></div>
-</div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_zpe_only</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A symmetric or spherical top: the zero-point energy only. The VPT2 ZPE</span>
+<span class="sd">        does not depend on how the components of a degenerate vibration are</span>
+<span class="sd">        chosen, but its fundamentals and overtones need the degenerate-mode</span>
+<span class="sd">        formulas, not implemented yet."""</span>
+        <span class="n">cm_to_kj</span> <span class="o">=</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">CM_TO_KJMOL</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"omega"</span><span class="p">])</span>
+        <span class="n">sets</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"degenerate_sets"</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">zpe_h</span><span class="p">,</span> <span class="n">zpe</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"zpe_harmonic"</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">"zpe"</span><span class="p">]</span>
+        <span class="n">in_set</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sets</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">s</span><span class="p">}</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">""</span><span class="p">,</span>
+            <span class="s2">"    Mode   Harmonic"</span><span class="p">,</span>
+            <span class="s2">"             (cm^-1)"</span><span class="p">,</span>
+            <span class="s2">"    ----   --------"</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">omega</span><span class="p">):</span>
+            <span class="n">note</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"   (degenerate set </span><span class="si">{</span><span class="n">in_set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">)"</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">in_set</span> <span class="k">else</span> <span class="s2">""</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"    </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}{</span><span class="n">note</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">__</span><span class="p">(</span>
+                <span class="s2">"This molecule is a symmetric or spherical top, so it has degenerate "</span>
+                <span class="s2">"vibrations. Only the anharmonic zero-point energy is computed: it "</span>
+                <span class="s2">"does not depend on how the components of a degenerate vibration are "</span>
+                <span class="s2">"chosen, while the anharmonic fundamentals and overtones of "</span>
+                <span class="s2">"degenerate modes need formulas not implemented yet. The harmonic "</span>
+                <span class="sa">f</span><span class="s2">"Hessian (</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">'hessian'</span><span class="p">]</span><span class="si">}</span><span class="s2">) gives these frequencies:"</span><span class="p">,</span>
+                <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">__</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Zero-point energy: harmonic </span><span class="si">{</span><span class="n">zpe_h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cm_to_kj</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kJ/mol, "</span>
+                <span class="sa">f</span><span class="s2">"anharmonic </span><span class="si">{</span><span class="n">zpe</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cm_to_kj</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kJ/mol (correction "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="p">(</span><span class="n">zpe</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">zpe_h</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cm_to_kj</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kJ/mol, </span><span class="si">{</span><span class="n">zpe</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">zpe_h</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> cm^-1, "</span>
+                <span class="sa">f</span><span class="s2">"including G0 = </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">'g0'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> cm^-1)."</span><span class="p">,</span>
+                <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">spread</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"spread"</span><span class="p">]</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">__</span><span class="p">(</span>
+                <span class="s2">"Numerical noise: equivalent finite-difference routes to the force "</span>
+                <span class="sa">f</span><span class="s2">"constants differ by up to </span><span class="si">{</span><span class="n">spread</span><span class="p">[</span><span class="s1">'cubic'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> cm^-1 (cubic) and "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">spread</span><span class="p">[</span><span class="s1">'quartic'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> cm^-1 (quartic)."</span><span class="p">,</span>
+                <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">(</span><span class="n">spread</span><span class="p">):</span>
+            <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+                <span class="n">__</span><span class="p">(</span>
+                    <span class="s2">"WARNING: the force constants are noisy, so the anharmonic "</span>
+                    <span class="s2">"zero-point energy may be off by several cm^-1 or more."</span><span class="p">,</span>
+                    <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"energy"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"energy"</span><span class="p">],</span>
+            <span class="s2">"ZPE"</span><span class="p">:</span> <span class="n">zpe</span> <span class="o">*</span> <span class="n">cm_to_kj</span><span class="p">,</span>
+            <span class="s2">"harmonic ZPE"</span><span class="p">:</span> <span class="n">zpe_h</span> <span class="o">*</span> <span class="n">cm_to_kj</span><span class="p">,</span>
+            <span class="s2">"ZPE correction"</span><span class="p">:</span> <span class="p">(</span><span class="n">zpe</span> <span class="o">-</span> <span class="n">zpe_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">cm_to_kj</span><span class="p">,</span>
+            <span class="s2">"G0"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"g0"</span><span class="p">],</span>
+            <span class="s2">"harmonic frequencies"</span><span class="p">:</span> <span class="n">omega</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"n_modes"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega</span><span class="p">),</span>
+        <span class="p">}</span></div>
 
 </pre></div>
 

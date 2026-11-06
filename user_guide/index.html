@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>User Guide &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5 documentation</title>
+    <title>User Guide &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5.1 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=e86bfd1c"></script>
+    <script src="../_static/documentation_options.js?v=049996ac"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="2026.11.5" />
+  <meta name="docsearch:version" content="2026.11.5.1" />
   
     
     <script src="../_static/searchtools.js"></script>
@@ -530,10 +530,12 @@ band;</p></li>
 same convention as Gaussian’s;</p></li>
 <li><p>the anharmonicity constants χ.</p></li>
 </ul>
-<p><strong>Limitations.</strong> Molecules with degenerate vibrations – linear molecules and symmetric
-or spherical tops such as CH<sub>4</sub>, NH<sub>3</sub>, ethane or benzene – are refused
-with a clear message: the formulas for degenerate modes are not in yet. The structure
-must be a minimum. Modes below a threshold (200 cm<sup>-1</sup> by default), torsions and
+<p><strong>Limitations.</strong> For symmetric and spherical tops, molecules with degenerate vibrations
+such as CH<sub>4</sub>, NH<sub>3</sub>, ethane or benzene, the step gives the <strong>zero-point
+energy only</strong>, with the harmonic frequencies: the anharmonic fundamentals, overtones and
+constants of degenerate modes need formulas that are not in yet. The zero-point energy
+does not, because it does not depend on how the degenerate modes are chosen. Linear
+molecules are refused with a clear message. The structure must be a minimum. Modes below a threshold (200 cm<sup>-1</sup> by default), torsions and
 other large-amplitude motions, are flagged in the output: VPT2 is not reliable for them,
 though they are kept in the zero-point energy.</p>
 </section>
@@ -610,6 +612,13 @@ this step’s displacements), the zero-point energies agree to 0.3 cm<sup>-1</su
 and propane and 2 cm<sup>-1</sup> for formaldehyde, the fundamentals to 0.7 cm<sup>-1</sup>
 rms for propane. Against ORCA 6.1.1’s own VPT2 for water (B3LYP/def2-TZVP) the
 fundamentals agree to 0.02 cm<sup>-1</sup>.</p>
+<p>For symmetric tops Gaussian uses a “hybrid scheme” for the rotational terms, and its
+zero-point energies differ from this step’s by 3–5.5 cm<sup>-1</sup> (NH<sub>3</sub>,
+ethane, methane with one heavier hydrogen), all of it in the rotational (Watson and
+Coriolis) part. Making the same molecules asymmetric tops by changing the mass of one or
+two hydrogens slightly, Gaussian’s treatment becomes the general one and the zero-point
+energies agree to 0.3–1.1 cm<sup>-1</sup> (methane, ammonia, ethane), the rotational part
+to 0.02 cm<sup>-1</sup>. Gaussian does no anharmonic analysis for spherical tops.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>

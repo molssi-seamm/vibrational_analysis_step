@@ -3,3 +3,4 @@ seamm-exec>=2026.11.5
 seamm-util
 seamm-widgets
 numpy
+ase

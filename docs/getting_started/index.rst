@@ -4,28 +4,26 @@ Getting Started
 
 Installation
 ============
-The Vibrational Analysis step is probably already installed in your SEAMM
-environment, but if not or if you wish to check, follow the directions for the `SEAMM
-Installer`_. The graphical installer is the easiest to use. In the SEAMM conda
-environment, simply type:: 
+The Vibrational Analysis step is installed with SEAMM's other plug-ins. To add or
+update it in an installation::
 
-  seamm-installer
+  seamm-manager install vibrational-analysis-step
 
-or use the shortcut if you installed one. Switch to the second tab, `Components`, and
-check for `vibrational-analysis-step`. If it is not installed, or
-can be updated, check the box next to it and click `Install selected` or `Update
-selected` as appropriate.
+An example
+==========
+The anharmonic frequencies and zero-point energy of water with ORCA, in a flowchart
+built from a spec (see the SEAMM documentation on building flowcharts):
 
-The non-graphical installer is also straightforward::
+.. code-block:: yaml
 
-  seamm-installer install --update vibrational-analysis-step
+   title: Water VPT2
+   steps:
+   - Model Chemistry: {model chemistry: "ORCA:DFT@B3LYP/def2-SVP"}
+   - FromSMILESStep: {smiles string: O}
+   - Vibrational Analysis
 
-will ensure both that it is installed and up-to-date.
-
-.. _SEAMM Installer: https://molssi-seamm.github.io/installation/index.html
-
-Replace this!
-=============
-Put an example or two here....
-
-That should be enough to get started. For more detail about the functionality in this plug-in, see the :ref:`User Guide <user-guide>`.
+The step optimizes the structure, computes the analytic Hessian and the Hessians at six
+displaced structures over ORCA's MDI engine, and prints the fundamentals (here about
+1583, 3609 and 3698 cm\ :sup:`-1`, against harmonic 1638, 3788 and 3883) and the
+anharmonic zero-point energy (a correction of about -74 cm\ :sup:`-1`). See the
+:ref:`User Guide <user-guide>` for the options.

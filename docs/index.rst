@@ -1,7 +1,9 @@
 Welcome to the documentation for the Vibrational Analysis SEAMM plug-in
 =======================================================================
 
-Vibrational Analysis <does what? replace this text>
+The Vibrational Analysis step computes anharmonic vibrational frequencies and the
+anharmonic zero-point energy by second-order vibrational perturbation theory (VPT2),
+with any method a Model Chemistry step chooses.
 
 .. grid:: 1 1 2 2
 

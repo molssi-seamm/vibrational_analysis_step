@@ -22,7 +22,7 @@ import numpy as np
 class State:
     """A vibrational state and its (deperturbed) frequency.
 
-    Attributes
+    Parameters
     ----------
     state : tuple of int
         The modes excited: ``(i,)`` a fundamental, ``(j, j)`` an overtone,
@@ -39,7 +39,7 @@ class State:
 class Interaction:
     """A Fermi resonance between two states.
 
-    Attributes
+    Parameters
     ----------
     left, right : State
         The fundamental, and the overtone or combination band.

@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vibrational_analysis_step.vibrational_analysis &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c224919a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../_static/documentation_options.js?v=e86bfd1c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/vibrational_analysis_step/vibrational_analysis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2026.11.5" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/SEAMM logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/SEAMM Inverted 288x181.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Vibrational Analysis</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">vibrational_analysis_step.vibrational_analysis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for vibrational_analysis_step.vibrational_analysis</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">"""Non-graphical part of the Vibrational Analysis step in a SEAMM flowchart"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib.resources</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">vibrational_analysis_step</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vibrational_analysis_step</span><span class="w"> </span><span class="kn">import</span> <span class="n">vpt2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">molsystem</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seamm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">seamm_util</span><span class="w"> </span><span class="kn">import</span> <span class="n">ureg</span><span class="p">,</span> <span class="n">Q_</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seamm_util.printing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">printing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">seamm_util.printing</span><span class="w"> </span><span class="kn">import</span> <span class="n">FormattedText</span> <span class="k">as</span> <span class="n">__</span>
+
+<span class="c1"># In addition to the normal logger, two logger-like printing facilities are</span>
+<span class="c1"># defined: "job" and "printer". "job" send output to the main job.out file for</span>
+<span class="c1"># the job, and should be used very sparingly, typically to echo what this step</span>
+<span class="c1"># will do in the initial summary of the job.</span>
+<span class="c1">#</span>
+<span class="c1"># "printer" sends output to the file "step.out" in this steps working</span>
+<span class="c1"># directory, and is used for all normal output from this step.</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">printing</span><span class="o">.</span><span class="n">getPrinter</span><span class="p">()</span>
+<span class="n">printer</span> <span class="o">=</span> <span class="n">printing</span><span class="o">.</span><span class="n">getPrinter</span><span class="p">(</span><span class="s2">"Vibrational Analysis"</span><span class="p">)</span>
+
+<span class="c1"># Add this module's properties to the standard properties</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">"vibrational_analysis_step"</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"data"</span>
+<span class="n">csv_file</span> <span class="o">=</span> <span class="n">path</span> <span class="o">/</span> <span class="s2">"properties.csv"</span>
+<span class="k">if</span> <span class="n">csv_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">molsystem</span><span class="o">.</span><span class="n">add_properties_from_file</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="VibrationalAnalysis">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vibrational_analysis.VibrationalAnalysis">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">VibrationalAnalysis</span><span class="p">(</span><span class="n">seamm</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    The non-graphical part of a Vibrational Analysis step in a flowchart.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parser : configargparse.ArgParser</span>
+<span class="sd">        The parser object.</span>
+
+<span class="sd">    options : tuple</span>
+<span class="sd">        It contains a two item tuple containing the populated namespace and the</span>
+<span class="sd">        list of remaining argument strings.</span>
+
+<span class="sd">    subflowchart : seamm.Flowchart</span>
+<span class="sd">        A SEAMM Flowchart object that represents a subflowchart, if needed.</span>
+
+<span class="sd">    parameters : VibrationalAnalysisParameters</span>
+<span class="sd">        The control parameters for Vibrational Analysis.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    TkVibrationalAnalysis,</span>
+<span class="sd">    VibrationalAnalysis, VibrationalAnalysisParameters</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">flowchart</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">"Vibrational Analysis"</span><span class="p">,</span>
+        <span class="n">extension</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A step for Vibrational Analysis in a SEAMM flowchart.</span>
+
+<span class="sd">        You may wish to change the title above, which is the string displayed</span>
+<span class="sd">        in the box representing the step in the flowchart.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        flowchart: seamm.Flowchart</span>
+<span class="sd">            The non-graphical flowchart that contains this step.</span>
+
+<span class="sd">        title: str</span>
+<span class="sd">            The name displayed in the flowchart.</span>
+<span class="sd">        extension: None</span>
+<span class="sd">            Not yet implemented</span>
+<span class="sd">        logger : Logger = logger</span>
+<span class="sd">            The logger to use and pass to parent classes</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        """</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Creating Vibrational Analysis </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">flowchart</span><span class="o">=</span><span class="n">flowchart</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">"Vibrational Analysis"</span><span class="p">,</span>
+            <span class="n">extension</span><span class="o">=</span><span class="n">extension</span><span class="p">,</span>
+            <span class="n">module</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+        <span class="p">)</span>  <span class="c1"># yapf: disable</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">vibrational_analysis_step</span><span class="o">.</span><span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">vibrational_analysis_step</span><span class="o">.</span><span class="n">VibrationalAnalysisParameters</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The semantic version of this module."""</span>
+        <span class="k">return</span> <span class="n">vibrational_analysis_step</span><span class="o">.</span><span class="n">__version__</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">git_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The git version of this module."""</span>
+        <span class="k">return</span> <span class="n">vibrational_analysis_step</span><span class="o">.</span><span class="n">__git_revision__</span>
+
+<div class="viewcode-block" id="VibrationalAnalysis.description_text">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vibrational_analysis.VibrationalAnalysis.description_text">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">description_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A short description of what this step will do."""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">P</span><span class="p">:</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values_to_dict</span><span class="p">()</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">"Anharmonic vibrational analysis by second-order vibrational perturbation "</span>
+            <span class="s2">"theory (VPT2) with the flowchart's Model Chemistry."</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"optimize"</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">"yes"</span><span class="p">):</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">" The structure is first optimized to forces below </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'fmax'</span><span class="p">]</span><span class="si">}</span><span class="s2">."</span>
+        <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="s2">"displacement"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"automatic"</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="s2">"0.20 (Hessians) or 0.10 (gradients)"</span>
+        <span class="k">elif</span> <span class="n">P</span><span class="p">[</span><span class="s2">"displacement"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"mass-weighted"</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="s2">"0.025 Å amu^1/2 (mass-weighted)"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"displacement"</span><span class="p">])</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">" Then </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'derivatives'</span><span class="p">]</span><span class="si">}</span><span class="s2"> derivatives at structures displaced by "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> along each normal mode give the cubic and quartic force "</span>
+            <span class="s2">"constants."</span>
+        <span class="p">)</span>
+        <span class="n">resonances</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">resonances</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"GVPT2"</span><span class="p">):</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="s2">" Fermi resonances are treated variationally (GVPT2)."</span>
+        <span class="k">elif</span> <span class="n">resonances</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"deperturbed"</span><span class="p">):</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="s2">" Fermi resonances are deperturbed."</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="s2">" Fermi resonances are not treated."</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">" Modes below </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="s1">'low frequency'</span><span class="p">]</span><span class="si">}</span><span class="s2"> are flagged."</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="VibrationalAnalysis.run">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vibrational_analysis.VibrationalAnalysis.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Run the VPT2 analysis of the current structure."""</span>
+        <span class="n">next_node</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">printer</span><span class="p">)</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">current_values_to_dict</span><span class="p">(</span>
+            <span class="n">context</span><span class="o">=</span><span class="n">seamm</span><span class="o">.</span><span class="n">flowchart_variables</span><span class="o">.</span><span class="n">_data</span>
+        <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description_text</span><span class="p">(</span><span class="n">P</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span><span class="p">))</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="p">)</span>
+        <span class="n">directory</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">_</span><span class="p">,</span> <span class="n">configuration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_system_configuration</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vpt2_analysis</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">store_results</span><span class="p">(</span>
+            <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">create_tables</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">note</span> <span class="ow">in</span> <span class="p">(</span>
+            <span class="p">(</span><span class="s2">"mills1972"</span><span class="p">,</span> <span class="s2">"The VPT2 formulas."</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"barone2005"</span><span class="p">,</span> <span class="s2">"Generalized VPT2 (GVPT2) and the Fermi resonances."</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"martin1995"</span><span class="p">,</span> <span class="s2">"Martin's criteria for Fermi resonances."</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"franke2021"</span><span class="p">,</span> <span class="s2">"The resonance and polyad treatment."</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"pyvpt2"</span><span class="p">,</span> <span class="s2">"The VPT2 algebra adapted in this step."</span><span class="p">),</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bibliography</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">references</span><span class="o">.</span><span class="n">cite</span><span class="p">(</span>
+                    <span class="n">raw</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_bibliography</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
+                    <span class="n">alias</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+                    <span class="n">module</span><span class="o">=</span><span class="s2">"vibrational_analysis_step"</span><span class="p">,</span>
+                    <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="n">note</span><span class="o">=</span><span class="n">note</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">next_node</span></div>
+
+
+<div class="viewcode-block" id="VibrationalAnalysis.vpt2_analysis">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vibrational_analysis.VibrationalAnalysis.vpt2_analysis">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vpt2_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Optimize (optionally), take the Hessian, the derivatives at the</span>
+<span class="sd">        displaced structures and the VPT2 results for the configuration.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        P : dict</span>
+<span class="sd">            The step's parameter values.</span>
+<span class="sd">        configuration : molsystem._Configuration</span>
+<span class="sd">            Updated by the optimization.</span>
+<span class="sd">        directory : pathlib.Path</span>
+<span class="sd">            Where vpt2.json is written.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            As :func:`vibrational_analysis_step.vpt2.vpt2`, plus 'hessian',</span>
+<span class="sd">            'derivatives', 'spread' and 'energy' (kJ/mol).</span>
+<span class="sd">        """</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">seamm_exec.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">HessianDriver</span>
+
+        <span class="n">driver</span> <span class="o">=</span> <span class="n">HessianDriver</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">route</span><span class="o">=</span><span class="n">P</span><span class="p">[</span><span class="s2">"hessian route"</span><span class="p">],</span>
+            <span class="n">who</span><span class="o">=</span><span class="s2">"Vibrational Analysis"</span><span class="p">,</span>
+            <span class="n">print_to</span><span class="o">=</span><span class="n">printer</span><span class="p">,</span>
+            <span class="n">precision</span><span class="o">=</span><span class="s2">"tight"</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">mc</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">model_chemistry</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">mc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"Vibrational Analysis needs a Model Chemistry: add a 'Model "</span>
+                <span class="s2">"Chemistry' step before it to choose the method."</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">mc</span><span class="p">[</span><span class="s2">"level"</span><span class="p">]</span>
+        <span class="n">masses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">atomic_masses</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">optimize</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s2">"optimize"</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">"yes"</span><span class="p">)</span>
+        <span class="n">fmax</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s2">"fmax"</span><span class="p">]</span><span class="o">.</span><span class="n">m_as</span><span class="p">(</span><span class="s2">"eV/Å"</span><span class="p">)</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"fmax"</span><span class="p">],</span> <span class="s2">"m_as"</span><span class="p">)</span> <span class="k">else</span> <span class="n">P</span><span class="p">[</span><span class="s2">"fmax"</span><span class="p">]</span>
+
+        <span class="k">with</span> <span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">evaluator</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">last_plan</span>
+                <span class="k">if</span> <span class="n">optimize</span><span class="p">:</span>
+                    <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+                        <span class="n">__</span><span class="p">(</span>
+                            <span class="s2">"The structure is not optimized: the Model Chemistry runs "</span>
+                            <span class="s2">"as separate tasks, with no engine to drive the "</span>
+                            <span class="s2">"optimization."</span><span class="p">,</span>
+                            <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="n">E0</span><span class="p">,</span> <span class="n">H0</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">fd_hessian_tasks</span><span class="p">(</span><span class="n">evaluator</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+                <span class="n">harmonic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_harmonic</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+                <span class="n">derivatives</span> <span class="o">=</span> <span class="s2">"gradients"</span>
+                <span class="n">step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"displacement"</span><span class="p">],</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">derivatives</span><span class="p">)</span>
+                <span class="n">phi3</span><span class="p">,</span> <span class="n">phi4</span><span class="p">,</span> <span class="n">spread</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from_gradients</span><span class="p">(</span>
+                    <span class="n">driver</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="kc">None</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">optimize</span><span class="p">:</span>
+                    <span class="n">session</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">fmax</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"max steps"</span><span class="p">]))</span>
+                <span class="n">E0</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="s2">"kJ/mol"</span><span class="p">)</span>
+                <span class="n">H0</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">hessian</span><span class="p">()</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">coordinates</span>
+                <span class="n">harmonic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_harmonic</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
+                <span class="n">derivatives</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="s2">"derivatives"</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">derivatives</span> <span class="o">==</span> <span class="s2">"automatic"</span><span class="p">:</span>
+                    <span class="n">derivatives</span> <span class="o">=</span> <span class="s2">"Hessians"</span> <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">analytic</span> <span class="k">else</span> <span class="s2">"gradients"</span>
+                <span class="n">step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"displacement"</span><span class="p">],</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">derivatives</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">derivatives</span> <span class="o">==</span> <span class="s2">"Hessians"</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">session</span><span class="o">.</span><span class="n">analytic</span><span class="p">:</span>
+                        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+                            <span class="n">__</span><span class="p">(</span>
+                                <span class="s2">"The engine has no analytic Hessian, so each displaced "</span>
+                                <span class="s2">"Hessian is a finite difference of its forces."</span><span class="p">,</span>
+                                <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="c1"># The reference Hessian is the one above, from the same</span>
+                    <span class="c1"># engine and settings as the displaced ones</span>
+                    <span class="n">hessians</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">key</span><span class="p">:</span> <span class="n">session</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">xyz</span> <span class="o">*</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">BOHR_TO_ANGSTROM</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">xyz</span> <span class="ow">in</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">displacements</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="s2">"hessians"</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+                    <span class="p">}</span>
+                    <span class="n">phi3</span><span class="p">,</span> <span class="n">phi4</span><span class="p">,</span> <span class="n">spread</span> <span class="o">=</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">force_constants_from_hessians</span><span class="p">(</span>
+                        <span class="n">harmonic</span><span class="p">,</span> <span class="n">hessians</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="n">H0</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">phi3</span><span class="p">,</span> <span class="n">phi4</span><span class="p">,</span> <span class="n">spread</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from_gradients</span><span class="p">(</span>
+                        <span class="n">driver</span><span class="p">,</span>
+                        <span class="n">session</span><span class="o">.</span><span class="n">evaluator</span><span class="p">,</span>
+                        <span class="n">configuration</span><span class="p">,</span>
+                        <span class="n">harmonic</span><span class="p">,</span>
+                        <span class="n">step</span><span class="p">,</span>
+                        <span class="n">session</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+        <span class="n">resonances</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">])</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">vpt2</span><span class="p">(</span>
+            <span class="n">harmonic</span><span class="p">,</span>
+            <span class="n">phi3</span><span class="p">,</span>
+            <span class="n">phi4</span><span class="p">,</span>
+            <span class="n">fermi</span><span class="o">=</span><span class="ow">not</span> <span class="n">resonances</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"none"</span><span class="p">),</span>
+            <span class="n">gvpt2</span><span class="o">=</span><span class="n">resonances</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"GVPT2"</span><span class="p">),</span>
+            <span class="n">omega_threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_in</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"resonance window"</span><span class="p">],</span> <span class="s2">"1/cm"</span><span class="p">),</span>
+            <span class="n">k_threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_in</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"resonance threshold"</span><span class="p">],</span> <span class="s2">"1/cm"</span><span class="p">),</span>
+            <span class="n">low_mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_in</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="s2">"low frequency"</span><span class="p">],</span> <span class="s2">"1/cm"</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">"hessian"</span><span class="p">]</span> <span class="o">=</span> <span class="n">how</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">"derivatives"</span><span class="p">]</span> <span class="o">=</span> <span class="n">derivatives</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">"spread"</span><span class="p">]</span> <span class="o">=</span> <span class="n">spread</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">"energy"</span><span class="p">]</span> <span class="o">=</span> <span class="n">E0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_write_files</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">phi3</span><span class="p">,</span> <span class="n">phi4</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+    <span class="c1">#: The spreads between equivalent finite-difference routes (cm^-1) above</span>
+    <span class="c1">#: which the force constants are too noisy to trust to a few cm^-1. Only</span>
+    <span class="c1">#: the quartic spread: it grows with noise as 1/step^2 (Hessians) or</span>
+    <span class="c1">#: 1/step^3 (gradients), while the cubic spread at the default steps is</span>
+    <span class="c1">#: mostly the higher-order (truncation) error, harmless (propane, 0.20:</span>
+    <span class="c1">#: cubic 6.6, quartic 3.4 cm^-1, ZPE within 0.2 cm^-1 of Gaussian's).</span>
+    <span class="n">NOISE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"quartic"</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">}</span>
+
+    <span class="c1">#: The default steps, dimensionless (2026-11-05, against Gaussian 09)</span>
+    <span class="n">STEP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Hessians"</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span> <span class="s2">"gradients"</span><span class="p">:</span> <span class="mf">0.10</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">derivatives</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The step(s) for the displacements: a number, 'automatic' or</span>
+<span class="sd">        'mass-weighted'."""</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">"automatic"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">STEP</span><span class="p">[</span><span class="n">derivatives</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">"mass-weighted"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">mass_weighted_steps</span><span class="p">(</span><span class="n">harmonic</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="VibrationalAnalysis.noisy">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vibrational_analysis.VibrationalAnalysis.noisy">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">noisy</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">spread</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Whether the force constants are too noisy (see ``NOISE``)."""</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">spread</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">limit</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">limit</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">NOISE</span><span class="o">.</span><span class="n">items</span><span class="p">())</span></div>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_in</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">units</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A parameter's magnitude in the given units."""</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">m_as</span><span class="p">(</span><span class="n">units</span><span class="p">))</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">"m_as"</span><span class="p">)</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_harmonic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">coords_ang</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The harmonic analysis; a clear error for molecules VPT2 here cannot</span>
+<span class="sd">        treat."""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">Harmonic</span><span class="p">(</span>
+                <span class="n">H0</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coords_ang</span><span class="p">)</span> <span class="o">/</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">BOHR_TO_ANGSTROM</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">vpt2</span><span class="o">.</span><span class="n">DegenerateModesError</span><span class="p">,</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">NotAMinimumError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Vibrational Analysis: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_from_gradients</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">session</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The force constants from gradients at the displaced structures: as</span>
+<span class="sd">        tasks (in parallel) when the evaluator runs the model chemistry as</span>
+<span class="sd">        tasks, otherwise over the warm engine."""</span>
+        <span class="n">geometries</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"ref"</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">*</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">BOHR_TO_ANGSTROM</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">xyz</span> <span class="ow">in</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">displacements</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="s2">"gradients"</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s2">"d"</span> <span class="o">+</span> <span class="s2">"_"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">m</span><span class="si">}{</span><span class="s1">'p'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'m'</span><span class="si">}{</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">keys</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="n">geometries</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xyz</span> <span class="o">*</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">BOHR_TO_ANGSTROM</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+            <span class="n">__</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">geometries</span><span class="p">)</span><span class="si">}</span><span class="s2"> gradients for the force constants."</span><span class="p">,</span>
+                <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="n">evaluator</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="s2">"batch"</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">driver</span><span class="o">.</span><span class="n">route</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"warm engine"</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+                <span class="n">evaluator</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">geometries</span><span class="p">,</span> <span class="s2">"the force constants"</span>
+            <span class="p">)</span>
+            <span class="n">gradients</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">g</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gradients</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">session</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">geometries</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">g0</span> <span class="o">=</span> <span class="n">gradients</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"ref"</span><span class="p">)</span>
+        <span class="n">by_key</span> <span class="o">=</span> <span class="p">{</span><span class="n">keys</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span> <span class="n">g</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">gradients</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">return</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">force_constants_from_gradients</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">by_key</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="n">g0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_write_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">harmonic</span><span class="p">,</span> <span class="n">phi3</span><span class="p">,</span> <span class="n">phi4</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The force constants and results, for reuse and checking."""</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"masses"</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">masses</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"coordinates (bohr)"</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"omega"</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">omega</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"rotational constants"</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"phi_ijk"</span><span class="p">:</span> <span class="n">phi3</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"phi_iijj"</span><span class="p">:</span> <span class="n">phi4</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"nu"</span><span class="p">,</span> <span class="s2">"nu_deperturbed"</span><span class="p">,</span> <span class="s2">"overtones"</span><span class="p">,</span> <span class="s2">"combinations"</span><span class="p">,</span> <span class="s2">"chi"</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"zpe_harmonic"</span><span class="p">,</span> <span class="s2">"zpe"</span><span class="p">,</span> <span class="s2">"g0"</span><span class="p">,</span> <span class="s2">"hessian"</span><span class="p">,</span> <span class="s2">"derivatives"</span><span class="p">,</span> <span class="s2">"spread"</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="k">else</span> <span class="n">v</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">]</span>
+        <span class="p">]</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"flagged"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"flagged"</span><span class="p">]</span>
+        <span class="p">(</span><span class="n">directory</span> <span class="o">/</span> <span class="s2">"vpt2.json"</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
+
+<div class="viewcode-block" id="VibrationalAnalysis.analyze">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vibrational_analysis.VibrationalAnalysis.analyze">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Print the results and return them for storing."""</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="n">cm_to_kj</span> <span class="o">=</span> <span class="n">vpt2</span><span class="o">.</span><span class="n">CM_TO_KJMOL</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"omega"</span><span class="p">])</span>
+        <span class="n">nu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"nu"</span><span class="p">])</span>
+        <span class="n">flagged</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"flagged"</span><span class="p">])</span>
+        <span class="n">resonant</span> <span class="o">=</span> <span class="p">{</span><span class="n">r</span><span class="p">[</span><span class="s2">"fundamental"</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">]}</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">""</span><span class="p">,</span>
+            <span class="s2">"    Mode   Harmonic   Anharmonic      Shift   Overtone"</span><span class="p">,</span>
+            <span class="s2">"             (cm^-1)      (cm^-1)    (cm^-1)    (cm^-1)"</span><span class="p">,</span>
+            <span class="s2">"    ----   --------   ----------   --------   --------"</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s2">"overtones"</span><span class="p">])):</span>
+            <span class="n">notes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">resonant</span><span class="p">:</span>
+                <span class="n">notes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Fermi resonance"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">flagged</span><span class="p">:</span>
+                <span class="n">notes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"low frequency: VPT2 unreliable"</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"    </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">10.2f</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">v</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">o</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">"</span>
+                <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"   (</span><span class="si">{</span><span class="s1">'; '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span> <span class="k">if</span> <span class="n">notes</span> <span class="k">else</span> <span class="s2">""</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">zpe_h</span><span class="p">,</span> <span class="n">zpe</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"zpe_harmonic"</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">"zpe"</span><span class="p">]</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"The harmonic Hessian (</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">'hessian'</span><span class="p">]</span><span class="si">}</span><span class="s2">) and the "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">'derivatives'</span><span class="p">]</span><span class="si">}</span><span class="s2"> at the displaced structures give these "</span>
+            <span class="s2">"anharmonic frequencies:"</span>
+        <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">))</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Zero-point energy: harmonic </span><span class="si">{</span><span class="n">zpe_h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cm_to_kj</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kJ/mol, anharmonic "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">zpe</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cm_to_kj</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kJ/mol (correction </span><span class="si">{</span><span class="p">(</span><span class="n">zpe</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">zpe_h</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cm_to_kj</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> "</span>
+            <span class="sa">f</span><span class="s2">"kJ/mol, </span><span class="si">{</span><span class="n">zpe</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">zpe_h</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> cm^-1, including G0 = </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">'g0'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> "</span>
+            <span class="s2">"cm^-1)."</span>
+        <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">]:</span>
+            <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">]:</span>
+                <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"states"</span><span class="p">]</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"fundamental"</span><span class="p">]</span>
+                <span class="n">band</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"2 nu</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">"nu</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> + nu</span><span class="si">{</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span>
+                <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"nu</span><span class="si">{</span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> ~ </span><span class="si">{</span><span class="n">band</span><span class="si">}</span><span class="s2"> (mismatch </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'delta'</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> cm^-1, K = "</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'K'</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> cm^-1)"</span>
+                <span class="p">)</span>
+            <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+                <span class="n">__</span><span class="p">(</span>
+                    <span class="s2">"Fermi resonances treated: "</span> <span class="o">+</span> <span class="s2">"; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"."</span><span class="p">,</span>
+                    <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">flagged</span><span class="p">:</span>
+            <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+                <span class="n">__</span><span class="p">(</span>
+                    <span class="s2">"Modes "</span>
+                    <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">flagged</span><span class="p">))</span>
+                    <span class="o">+</span> <span class="s2">" are low-frequency (torsions or other large-amplitude "</span>
+                    <span class="s2">"motions): VPT2 is unreliable for them, though they are kept in "</span>
+                    <span class="s2">"the zero-point energy."</span><span class="p">,</span>
+                    <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">spread</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"spread"</span><span class="p">]</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">__</span><span class="p">(</span>
+                <span class="s2">"Numerical noise: equivalent finite-difference routes to the force "</span>
+                <span class="sa">f</span><span class="s2">"constants differ by up to </span><span class="si">{</span><span class="n">spread</span><span class="p">[</span><span class="s1">'cubic'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> cm^-1 (cubic) and "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">spread</span><span class="p">[</span><span class="s1">'quartic'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> cm^-1 (quartic)."</span><span class="p">,</span>
+                <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">(</span><span class="n">spread</span><span class="p">):</span>
+            <span class="n">printer</span><span class="o">.</span><span class="n">important</span><span class="p">(</span>
+                <span class="n">__</span><span class="p">(</span>
+                    <span class="s2">"WARNING: the force constants are noisy, so the anharmonic "</span>
+                    <span class="s2">"results above may be off by several cm^-1 or more. The "</span>
+                    <span class="s2">"Hessians or gradients are not precise enough for the finite "</span>
+                    <span class="s2">"differences: tighten the method's convergence, use analytic "</span>
+                    <span class="s2">"Hessians if the method has them, or try a larger displacement."</span><span class="p">,</span>
+                    <span class="n">indent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="s2">" "</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"energy"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"energy"</span><span class="p">],</span>
+            <span class="s2">"ZPE"</span><span class="p">:</span> <span class="n">zpe</span> <span class="o">*</span> <span class="n">cm_to_kj</span><span class="p">,</span>
+            <span class="s2">"harmonic ZPE"</span><span class="p">:</span> <span class="n">zpe_h</span> <span class="o">*</span> <span class="n">cm_to_kj</span><span class="p">,</span>
+            <span class="s2">"ZPE correction"</span><span class="p">:</span> <span class="p">(</span><span class="n">zpe</span> <span class="o">-</span> <span class="n">zpe_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">cm_to_kj</span><span class="p">,</span>
+            <span class="s2">"G0"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"g0"</span><span class="p">],</span>
+            <span class="s2">"harmonic frequencies"</span><span class="p">:</span> <span class="n">omega</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"fundamentals"</span><span class="p">:</span> <span class="n">nu</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"overtones"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"overtones"</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"combination bands"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"combinations"</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"chi"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"chi"</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">"resonances"</span><span class="p">:</span> <span class="s2">"; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'fundamental'</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'states'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">'states'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span>
+                <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"resonances"</span><span class="p">]</span>
+            <span class="p">),</span>
+            <span class="s2">"flagged modes"</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">flagged</span><span class="p">)],</span>
+            <span class="s2">"n_modes"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega</span><span class="p">),</span>
+        <span class="p">}</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

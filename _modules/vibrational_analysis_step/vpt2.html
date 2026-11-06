@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vibrational_analysis_step.vpt2 &#8212; SEAMM Vibrational Analysis Plug-in 2026.11.5 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c224919a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../_static/documentation_options.js?v=e86bfd1c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/vibrational_analysis_step/vpt2';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2026.11.5" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/SEAMM logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/SEAMM Inverted 288x181.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Vibrational Analysis</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">vibrational_analysis_step.vpt2</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for vibrational_analysis_step.vpt2</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">"""Second-order vibrational perturbation theory (VPT2), independent of any code.</span>
+
+<span class="sd">The anharmonic frequencies and zero-point energy of a molecule at a minimum, from</span>
+
+<span class="sd">1. its Cartesian Hessian there (:class:`Harmonic`: the normal modes and harmonic</span>
+<span class="sd">   frequencies, rotational constants and Coriolis coupling constants);</span>
+<span class="sd">2. Hessians, or gradients, at geometries displaced along the normal modes</span>
+<span class="sd">   (:func:`displacements`), whatever code or model computes them;</span>
+<span class="sd">3. the cubic and semi-diagonal quartic force constants by finite differences</span>
+<span class="sd">   (:func:`force_constants_from_hessians`, :func:`force_constants_from_gradients`);</span>
+<span class="sd">4. VPT2 with Fermi resonances deperturbed, optionally treated variationally</span>
+<span class="sd">   (GVPT2) (:func:`vpt2`).</span>
+
+<span class="sd">Units: atomic units in, except masses in amu; the force constants and all</span>
+<span class="sd">results in cm^-1, in dimensionless (reduced) normal coordinates</span>
+<span class="sd">q_i = sqrt(omega_i) Q_i.</span>
+
+<span class="sd">Only molecules without degenerate modes (asymmetric tops) are handled: the</span>
+<span class="sd">formulas for degenerate modes, needed by linear molecules and symmetric and</span>
+<span class="sd">spherical tops, are not yet in, so :class:`Harmonic` refuses those molecules.</span>
+
+<span class="sd">The VPT2 formulas, the detection of Fermi resonances and the finite-difference</span>
+<span class="sd">assembly are adapted from pyVPT2 (Copyright 2021-2024 Philip Nelson,</span>
+<span class="sd">BSD-3-Clause; see THIRD_PARTY_LICENSES.rst).</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.fermi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Interaction</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">fermi_solver</span>
+
+<span class="c1"># CODATA 2018</span>
+<span class="n">HARTREE_TO_CM</span> <span class="o">=</span> <span class="mf">219474.6313632</span>
+<span class="n">HARTREE_TO_KJMOL</span> <span class="o">=</span> <span class="mf">2625.4996394799</span>
+<span class="n">AMU_TO_ME</span> <span class="o">=</span> <span class="mf">1822.888486209</span>
+<span class="n">BOHR_TO_ANGSTROM</span> <span class="o">=</span> <span class="mf">0.529177210903</span>
+<span class="n">CM_TO_KJMOL</span> <span class="o">=</span> <span class="n">HARTREE_TO_KJMOL</span> <span class="o">/</span> <span class="n">HARTREE_TO_CM</span>
+
+<span class="c1">#: The steps, in units of the displacement, for each finite-difference route</span>
+<span class="n">STEPS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"hessians"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"single"</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"pair"</span><span class="p">:</span> <span class="p">()},</span>
+    <span class="s2">"gradients"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"single"</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s2">"pair"</span><span class="p">:</span> <span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="DegenerateModesError">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.DegenerateModesError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DegenerateModesError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The molecule has degenerate vibrations, which VPT2 here cannot treat."""</span></div>
+
+
+
+<div class="viewcode-block" id="NotAMinimumError">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.NotAMinimumError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NotAMinimumError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The structure has imaginary or vanishing vibrational frequencies."""</span></div>
+
+
+
+<div class="viewcode-block" id="Harmonic">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.Harmonic">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Harmonic</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""The harmonic analysis at a minimum.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    hessian : array (3N, 3N)</span>
+<span class="sd">        The Cartesian Hessian, E_h/bohr^2.</span>
+<span class="sd">    masses : array (N,)</span>
+<span class="sd">        The atomic masses, amu.</span>
+<span class="sd">    coordinates : array (N, 3)</span>
+<span class="sd">        The coordinates, bohr.</span>
+<span class="sd">    degenerate_tolerance : float</span>
+<span class="sd">        Relative tolerance for equal principal moments of inertia, which mark a</span>
+<span class="sd">        linear molecule or a symmetric or spherical top.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    omega : array (n,)</span>
+<span class="sd">        Harmonic frequencies, cm^-1, ascending.</span>
+<span class="sd">    L : array (3N, n)</span>
+<span class="sd">        Orthonormal mass-weighted normal modes.</span>
+<span class="sd">    modes : array (3N, n)</span>
+<span class="sd">        The Cartesian displacement, bohr, for a unit step in each dimensionless</span>
+<span class="sd">        normal coordinate.</span>
+<span class="sd">    B : array (3,)</span>
+<span class="sd">        Rotational constants, cm^-1, A &gt;= B &gt;= C.</span>
+<span class="sd">    zeta : array (3, n, n)</span>
+<span class="sd">        Coriolis coupling constants about the principal axes of B.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hessian</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">degenerate_tolerance</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">):</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">masses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">xyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">n_atoms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">H</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">n_atoms</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The Hessian is </span><span class="si">{</span><span class="n">H</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, not 3N x 3N for N=</span><span class="si">{</span><span class="n">n_atoms</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">+</span> <span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+        <span class="n">m</span> <span class="o">=</span> <span class="n">masses</span> <span class="o">*</span> <span class="n">AMU_TO_ME</span>
+        <span class="n">sqrt_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">xyz</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">m</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">xyz</span> <span class="o">-</span> <span class="n">center</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">masses</span> <span class="o">=</span> <span class="n">masses</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">xyz</span>
+
+        <span class="c1"># Principal moments and axes, m_e bohr^2</span>
+        <span class="n">inertia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">mass</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+            <span class="n">inertia</span> <span class="o">+=</span> <span class="n">mass</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="n">z</span><span class="p">],</span>
+                    <span class="p">[</span><span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">],</span>
+                    <span class="p">[</span><span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="p">],</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+        <span class="n">moments</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">inertia</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">moments</span> <span class="o">=</span> <span class="n">moments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rotor</span> <span class="o">=</span> <span class="n">_rotor_type</span><span class="p">(</span><span class="n">moments</span><span class="p">,</span> <span class="n">degenerate_tolerance</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotor</span> <span class="o">!=</span> <span class="s2">"asymmetric top"</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DegenerateModesError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"The molecule is a </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rotor</span><span class="si">}</span><span class="s2">, so it has degenerate vibrations. "</span>
+                <span class="s2">"VPT2 here handles only asymmetric tops so far: the formulas for "</span>
+                <span class="s2">"degenerate modes are not yet implemented."</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">HARTREE_TO_CM</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">moments</span><span class="p">)</span>
+
+        <span class="c1"># Translations and rotations in mass-weighted coordinates, and the</span>
+        <span class="c1"># orthonormal basis of the vibrations orthogonal to them</span>
+        <span class="n">tr</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            <span class="n">t</span><span class="p">[:,</span> <span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+            <span class="n">tr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="n">sqrt_m</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">axis</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[:,</span> <span class="n">a</span><span class="p">]</span>
+            <span class="n">tr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="n">sqrt_m</span><span class="p">)</span>
+        <span class="n">T</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">full</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">full</span><span class="p">[:,</span> <span class="mi">6</span><span class="p">:]</span>
+
+        <span class="n">Hm</span> <span class="o">=</span> <span class="n">H</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">sqrt_m</span><span class="p">,</span> <span class="n">sqrt_m</span><span class="p">)</span>
+        <span class="n">values</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Hm</span> <span class="o">@</span> <span class="n">D</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">values</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="n">HARTREE_TO_CM</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">):</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">values</span><span class="p">))</span> <span class="o">*</span> <span class="n">HARTREE_TO_CM</span>
+            <span class="k">raise</span> <span class="n">NotAMinimumError</span><span class="p">(</span>
+                <span class="s2">"The structure is not a minimum: lowest vibrational frequencies "</span>
+                <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">low</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+                <span class="o">+</span> <span class="s2">" cm^-1 (negative = imaginary)."</span>
+            <span class="p">)</span>
+        <span class="c1"># A deterministic phase for each mode (its largest component positive),</span>
+        <span class="c1"># so the displacements are the same on every machine and on a restart</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">D</span> <span class="o">@</span> <span class="n">U</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">L</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])),</span> <span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">L</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">L</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">L</span>
+        <span class="n">omega_au</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">omega</span> <span class="o">=</span> <span class="n">omega_au</span> <span class="o">*</span> <span class="n">HARTREE_TO_CM</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">/</span> <span class="n">sqrt_m</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">omega_au</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="p">)</span>
+
+        <span class="c1"># Coriolis constants about the principal axes</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">epsilon</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">epsilon</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zeta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">M</span> <span class="o">=</span> <span class="n">axes</span> <span class="o">@</span> <span class="n">epsilon</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">@</span> <span class="n">axes</span><span class="o">.</span><span class="n">T</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">zeta</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_atoms</span><span class="p">),</span> <span class="n">M</span><span class="p">)</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">zpe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The harmonic zero-point energy, cm^-1."""</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">omega</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Harmonic.to_normal">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.Harmonic.to_normal">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_normal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hessian</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A Cartesian Hessian (E_h/bohr^2) in dimensionless normal coordinates,</span>
+<span class="sd">        cm^-1."""</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hessian</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">+</span> <span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">))</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span> <span class="o">*</span> <span class="n">HARTREE_TO_CM</span></div>
+
+
+<div class="viewcode-block" id="Harmonic.gradient_to_normal">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.Harmonic.gradient_to_normal">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gradient_to_normal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A Cartesian gradient (E_h/bohr) in dimensionless normal coordinates,</span>
+<span class="sd">        cm^-1."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">modes</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">gradient</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="n">HARTREE_TO_CM</span></div>
+</div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_rotor_type</span><span class="p">(</span><span class="n">moments</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""'linear', 'spherical top', 'symmetric top' or 'asymmetric top' from the</span>
+<span class="sd">    principal moments, ascending."""</span>
+    <span class="n">largest</span> <span class="o">=</span> <span class="n">moments</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">moments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">tolerance</span> <span class="o">*</span> <span class="n">largest</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"linear"</span>
+    <span class="n">equal</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nb">abs</span><span class="p">(</span><span class="n">moments</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">moments</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">tolerance</span> <span class="o">*</span> <span class="n">largest</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">equal</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"spherical top"</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">equal</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"symmetric top"</span>
+    <span class="k">return</span> <span class="s2">"asymmetric top"</span>
+
+
+<div class="viewcode-block" id="displacements">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.displacements">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">displacements</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">route</span><span class="o">=</span><span class="s2">"hessians"</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The displaced geometries for the finite differences.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    harmonic : Harmonic</span>
+<span class="sd">    route : str</span>
+<span class="sd">        'hessians' (2n geometries) or 'gradients' (2n^2 + 2n).</span>
+<span class="sd">    step : float or array (n,)</span>
+<span class="sd">        The displacement in dimensionless normal coordinates, the same for</span>
+<span class="sd">        every mode or one per mode (see :func:`mass_weighted_steps`).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    [(key, coordinates)]</span>
+<span class="sd">        ``key`` is a tuple of (mode, steps) pairs, e.g. ``((3, 1),)`` or</span>
+<span class="sd">        ``((1, -1), (4, 1))``; coordinates (N, 3) in bohr.</span>
+<span class="sd">    """</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="n">STEPS</span><span class="p">[</span><span class="n">route</span><span class="p">]</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="n">_steps</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">harmonic</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">[</span><span class="s2">"single"</span><span class="p">]:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((((</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">),),</span> <span class="n">_displace</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">),),</span> <span class="n">step</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">harmonic</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">[</span><span class="s2">"pair"</span><span class="p">]:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">_displace</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">step</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_displace</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="n">xyz</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">mode</span><span class="p">,</span> <span class="n">steps</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+        <span class="n">xyz</span> <span class="o">+=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">modes</span><span class="p">[:,</span> <span class="n">mode</span><span class="p">]</span> <span class="o">*</span> <span class="n">step</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span> <span class="o">*</span> <span class="n">steps</span>
+    <span class="k">return</span> <span class="n">xyz</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_steps</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The step of each mode, from a number or an array."""</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">step</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">harmonic</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">step</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">step</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">harmonic</span><span class="o">.</span><span class="n">n</span><span class="p">,):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> steps for </span><span class="si">{</span><span class="n">harmonic</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2"> modes"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">step</span>
+
+
+<div class="viewcode-block" id="mass_weighted_steps">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.mass_weighted_steps">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mass_weighted_steps</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">0.025</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Steps of the same size in mass-weighted Cartesian coordinates for every</span>
+<span class="sd">    mode (Gaussian's convention, 0.025 Å amu^1/2), as dimensionless steps:</span>
+<span class="sd">    q_i = Q sqrt(omega_i), so stiff modes get larger dimensionless steps and</span>
+<span class="sd">    floppy ones smaller. Against Gaussian 09 (2026-11-05) a uniform 0.05 was</span>
+<span class="sd">    too small for C-H stretches: Hessian noise dominated the quartic constants</span>
+<span class="sd">    (propane ZPE 44 cm^-1 off; 0.2 cm^-1 at a step like Gaussian's).</span>
+<span class="sd">    """</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">BOHR_TO_ANGSTROM</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">AMU_TO_ME</span><span class="p">)</span>  <span class="c1"># bohr m_e^1/2</span>
+    <span class="n">omega_au</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">omega</span> <span class="o">/</span> <span class="n">HARTREE_TO_CM</span>
+    <span class="k">return</span> <span class="n">Q</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">omega_au</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="force_constants_from_hessians">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.force_constants_from_hessians">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">force_constants_from_hessians</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">hessians</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The cubic and semi-diagonal quartic force constants from the Hessians at</span>
+<span class="sd">    the displaced geometries.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    harmonic : Harmonic</span>
+<span class="sd">    hessians : dict</span>
+<span class="sd">        Cartesian Hessians (E_h/bohr^2) by the keys from :func:`displacements`.</span>
+<span class="sd">    step : float or array (n,)</span>
+<span class="sd">        The displacement(s) used.</span>
+<span class="sd">    reference : array, optional</span>
+<span class="sd">        The Hessian at the reference geometry at the same level as the displaced</span>
+<span class="sd">        ones (mixed levels); by default the harmonic one's diagonal, omega.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    phi_ijk : array (n, n, n)</span>
+<span class="sd">    phi_iijj : array (n, n)</span>
+<span class="sd">        In cm^-1, symmetrized.</span>
+<span class="sd">    spread : dict</span>
+<span class="sd">        The largest difference between finite-difference routes that should</span>
+<span class="sd">        agree ('cubic', 'quartic'), cm^-1: a measure of the numerical noise.</span>
+<span class="sd">    """</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">n</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">_steps</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+    <span class="n">h0</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">omega</span> <span class="k">if</span> <span class="n">reference</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">harmonic</span><span class="o">.</span><span class="n">to_normal</span><span class="p">(</span><span class="n">reference</span><span class="p">))</span>
+    <span class="n">plus</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">to_normal</span><span class="p">(</span><span class="n">hessians</span><span class="p">[((</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">),)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)}</span>
+    <span class="n">minus</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">to_normal</span><span class="p">(</span><span class="n">hessians</span><span class="p">[((</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)}</span>
+
+    <span class="n">phi_ijk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">phi_iijj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># Displace along i, read the (j, k) element; the other permutations of</span>
+        <span class="c1"># (i, j, k) are independent routes through j and k.</span>
+        <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">plus</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">minus</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="c1"># Displace along i, read the (j, j) element: phi_jjii</span>
+        <span class="n">phi_iijj</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">plus</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">minus</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h0</span><span class="p">)</span> <span class="o">/</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">_symmetrize</span><span class="p">(</span><span class="n">phi_ijk</span><span class="p">,</span> <span class="n">phi_iijj</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="force_constants_from_gradients">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.force_constants_from_gradients">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">force_constants_from_gradients</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">gradients</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The cubic and semi-diagonal quartic force constants from the gradients</span>
+<span class="sd">    at the displaced geometries.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    harmonic : Harmonic</span>
+<span class="sd">    gradients : dict</span>
+<span class="sd">        Cartesian gradients (E_h/bohr) by the keys from :func:`displacements`</span>
+<span class="sd">        with route 'gradients'.</span>
+<span class="sd">    step : float or array (n,)</span>
+<span class="sd">        The displacement(s) used.</span>
+<span class="sd">    reference : array, optional</span>
+<span class="sd">        The gradient at the reference geometry (zero at the minimum by default).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    As :func:`force_constants_from_hessians`.</span>
+<span class="sd">    """</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">n</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">_steps</span><span class="p">(</span><span class="n">harmonic</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">gradient_to_normal</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">gradients</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">g0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">reference</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">gradient_to_normal</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">g</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="n">phi_ijk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">phi_iijj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">gp</span><span class="p">,</span> <span class="n">gn</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">g3p</span><span class="p">,</span> <span class="n">g3n</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">))</span>
+        <span class="n">phi_iijj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">g3p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">gp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">gn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">g3n</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="c1"># Second difference of the gradient along i: phi_kii for every k, in</span>
+        <span class="c1"># all three of its positions (there is only this one route to it)</span>
+        <span class="n">phi_kii</span> <span class="o">=</span> <span class="p">(</span><span class="n">gp</span> <span class="o">+</span> <span class="n">gn</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">g0</span><span class="p">)</span> <span class="o">/</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">phi_ijk</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi_kii</span>
+        <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi_kii</span>
+        <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">phi_kii</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">pp</span><span class="p">,</span> <span class="n">pn</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">np_</span><span class="p">,</span> <span class="n">nn</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">gp</span><span class="p">,</span> <span class="n">gn</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">phi_iijj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">pn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">gp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">np_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">nn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">gn</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span>
+            <span class="mi">2</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">pp</span><span class="p">,</span> <span class="n">nn</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">get</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">pj</span><span class="p">,</span> <span class="n">nj</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">get</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">pk</span><span class="p">,</span> <span class="n">nk</span> <span class="o">=</span> <span class="n">get</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">get</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">pp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">nn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">g0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">pj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">pk</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">nj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">nk</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">_symmetrize</span><span class="p">(</span><span class="n">phi_ijk</span><span class="p">,</span> <span class="n">phi_iijj</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_symmetrize</span><span class="p">(</span><span class="n">phi_ijk</span><span class="p">,</span> <span class="n">phi_iijj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Average the routes that should agree, and report how far apart they</span>
+<span class="sd">    were."""</span>
+    <span class="n">cubic</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">phi_ijk</span> <span class="o">-</span> <span class="n">phi_ijk</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="p">),</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">quartic</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">phi_iijj</span> <span class="o">-</span> <span class="n">phi_iijj</span><span class="o">.</span><span class="n">T</span><span class="p">)))</span> <span class="k">if</span> <span class="n">phi_iijj</span><span class="o">.</span><span class="n">size</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="n">sym</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">phi_ijk</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span> <span class="o">/</span> <span class="mi">6</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">sym</span><span class="p">,</span>
+        <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">phi_iijj</span> <span class="o">+</span> <span class="n">phi_iijj</span><span class="o">.</span><span class="n">T</span><span class="p">),</span>
+        <span class="p">{</span><span class="s2">"cubic"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">cubic</span><span class="p">),</span> <span class="s2">"quartic"</span><span class="p">:</span> <span class="n">quartic</span><span class="p">},</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="find_resonances">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.find_resonances">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_resonances</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">phi_ijk</span><span class="p">,</span> <span class="n">omega_threshold</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span> <span class="n">k_threshold</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The Fermi resonances, by Martin's criteria.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    [dict]</span>
+<span class="sd">        Each with 'type' (1: omega_j ~ 2 omega_i; 2: omega_k ~ omega_i +</span>
+<span class="sd">        omega_j), 'fundamental' (the mode), 'states' (the pair of modes),</span>
+<span class="sd">        'delta' (the mismatch, cm^-1) and 'K' (the second-order shift, cm^-1).</span>
+<span class="sd">    """</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="n">omega_threshold</span><span class="p">:</span>
+            <span class="n">K</span> <span class="o">=</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="p">(</span><span class="mi">256</span> <span class="o">*</span> <span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="k">if</span> <span class="n">K</span> <span class="o">&gt;=</span> <span class="n">k_threshold</span><span class="p">:</span>
+                <span class="n">found</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"fundamental"</span><span class="p">:</span> <span class="n">j</span><span class="p">,</span> <span class="s2">"states"</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="s2">"delta"</span><span class="p">:</span> <span class="n">d</span><span class="p">,</span> <span class="s2">"K"</span><span class="p">:</span> <span class="n">K</span><span class="p">}</span>
+                <span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">omega</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="n">omega_threshold</span><span class="p">:</span>
+            <span class="n">K</span> <span class="o">=</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="p">(</span><span class="mi">64</span> <span class="o">*</span> <span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="k">if</span> <span class="n">K</span> <span class="o">&gt;=</span> <span class="n">k_threshold</span><span class="p">:</span>
+                <span class="n">found</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"fundamental"</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">"states"</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="s2">"delta"</span><span class="p">:</span> <span class="n">d</span><span class="p">,</span> <span class="s2">"K"</span><span class="p">:</span> <span class="n">K</span><span class="p">}</span>
+                <span class="p">)</span>
+    <span class="k">return</span> <span class="n">found</span></div>
+
+
+
+<div class="viewcode-block" id="vpt2">
+<a class="viewcode-back" href="../../api/vibrational_analysis_step.html#vibrational_analysis_step.vpt2.vpt2">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">vpt2</span><span class="p">(</span>
+    <span class="n">harmonic</span><span class="p">,</span>
+    <span class="n">phi_ijk</span><span class="p">,</span>
+    <span class="n">phi_iijj</span><span class="p">,</span>
+    <span class="n">fermi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">gvpt2</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">omega_threshold</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span>
+    <span class="n">k_threshold</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">low_mode</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""VPT2 frequencies and zero-point energy.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    harmonic : Harmonic</span>
+<span class="sd">    phi_ijk, phi_iijj : arrays</span>
+<span class="sd">        The cubic and semi-diagonal quartic force constants, cm^-1.</span>
+<span class="sd">    fermi : bool</span>
+<span class="sd">        Deperturb Fermi resonances (Martin's criteria).</span>
+<span class="sd">    gvpt2 : bool</span>
+<span class="sd">        Then treat them variationally (GVPT2). Needs ``fermi``.</span>
+<span class="sd">    omega_threshold, k_threshold : float</span>
+<span class="sd">        Martin's criteria for a resonance, cm^-1.</span>
+<span class="sd">    low_mode : float</span>
+<span class="sd">        Modes below this, cm^-1, are flagged: VPT2 is unreliable for torsions</span>
+<span class="sd">        and other large-amplitude motions.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        'omega', 'nu' (fundamentals), 'nu_deperturbed', 'overtones',</span>
+<span class="sd">        'combinations' (n x n), 'chi' (n x n), 'zpe_harmonic', 'zpe' (the</span>
+<span class="sd">        anharmonic ZPE including the constant term), 'g0' (the constant term),</span>
+<span class="sd">        'resonances', 'flagged' (mode indices); all cm^-1.</span>
+<span class="sd">    """</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">omega</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">omega</span><span class="p">)</span>
+    <span class="n">B</span><span class="p">,</span> <span class="n">zeta</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">zeta</span>
+    <span class="n">resonances</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">find_resonances</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">phi_ijk</span><span class="p">,</span> <span class="n">omega_threshold</span><span class="p">,</span> <span class="n">k_threshold</span><span class="p">)</span> <span class="k">if</span> <span class="n">fermi</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="p">)</span>
+    <span class="n">type1</span> <span class="o">=</span> <span class="p">{(</span><span class="n">r</span><span class="p">[</span><span class="s2">"fundamental"</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">"states"</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resonances</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="n">type2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resonances</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"fundamental"</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">"states"</span><span class="p">]</span>
+            <span class="n">type2</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+            <span class="n">type2</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">resonant</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Whether omega_f ~ omega_a + omega_b is a treated resonance: type 2,</span>
+<span class="sd">        or type 1 when a == b (omega_f ~ 2 omega_a), which enters the</span>
+<span class="sd">        off-diagonal chi through its k = i and k = j terms."""</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="n">type2</span> <span class="ow">or</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="ow">and</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="ow">in</span> <span class="n">type1</span><span class="p">)</span>
+
+    <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">chi0</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">chi0</span> <span class="o">+=</span> <span class="n">phi_iijj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">chi0</span> <span class="o">-=</span> <span class="p">(</span><span class="mi">7</span> <span class="o">/</span> <span class="mi">9</span><span class="p">)</span> <span class="o">*</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># Diagonal</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">phi_iijj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="n">type1</span><span class="p">:</span>  <span class="c1"># omega_k ~ 2 omega_i</span>
+                <span class="n">value</span> <span class="o">-=</span> <span class="p">(</span><span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+                    <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">omega</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">omega</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">-=</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="o">*</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">/</span> <span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">omega</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+                <span class="p">)</span>
+        <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">16</span>
+
+        <span class="c1"># Off-diagonal</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">in</span> <span class="n">type1</span><span class="p">:</span>  <span class="c1"># omega_i ~ 2 omega_j</span>
+                <span class="n">chi0</span> <span class="o">-=</span> <span class="p">(</span>
+                    <span class="mi">3</span>
+                    <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                    <span class="o">*</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">chi0</span> <span class="o">+=</span> <span class="p">(</span>
+                    <span class="mi">3</span>
+                    <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="o">*</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">phi_iijj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+            <span class="n">rot</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">*</span> <span class="n">zeta</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+            <span class="n">value</span> <span class="o">+=</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">*</span> <span class="n">rot</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">-=</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="n">omega</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="n">wi</span><span class="p">,</span> <span class="n">wj</span><span class="p">,</span> <span class="n">wk</span> <span class="o">=</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">omega</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">resonant</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>  <span class="c1"># omega_k ~ omega_i + omega_j</span>
+                    <span class="n">d_ij</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">-</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span>
+                    <span class="p">)</span> <span class="o">/</span> <span class="o">-</span><span class="mi">2</span>
+                    <span class="n">d_0</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">-</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">resonant</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>  <span class="c1"># omega_i ~ omega_j + omega_k</span>
+                    <span class="n">d_ij</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">-</span> <span class="n">wk</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">-</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span>
+                    <span class="p">)</span> <span class="o">/</span> <span class="o">-</span><span class="mi">2</span>
+                    <span class="n">d_0</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">-</span> <span class="n">wk</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">-</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">resonant</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>  <span class="c1"># omega_j ~ omega_i + omega_k</span>
+                    <span class="n">d_ij</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">-</span> <span class="n">wk</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span>
+                    <span class="p">)</span> <span class="o">/</span> <span class="o">-</span><span class="mi">2</span>
+                    <span class="n">d_0</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">-</span> <span class="n">wk</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">-</span> <span class="n">wk</span><span class="p">)</span>
+                        <span class="o">*</span> <span class="p">(</span><span class="n">wi</span> <span class="o">+</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span>
+                        <span class="o">*</span> <span class="p">(</span><span class="n">wi</span> <span class="o">-</span> <span class="n">wj</span> <span class="o">+</span> <span class="n">wk</span><span class="p">)</span>
+                        <span class="o">*</span> <span class="p">(</span><span class="n">wi</span> <span class="o">-</span> <span class="n">wj</span> <span class="o">-</span> <span class="n">wk</span><span class="p">)</span>
+                    <span class="p">)</span>
+                    <span class="n">d_ij</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">wk</span> <span class="o">*</span> <span class="p">(</span><span class="n">wi</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">wj</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">wk</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span>
+                    <span class="n">d_0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span> <span class="o">*</span> <span class="n">wi</span> <span class="o">*</span> <span class="n">wj</span> <span class="o">*</span> <span class="n">wk</span> <span class="o">/</span> <span class="n">delta</span>
+                <span class="n">value</span> <span class="o">+=</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">d_ij</span>
+                <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">i</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">:</span>
+                    <span class="n">chi0</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">phi_ijk</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">d_0</span>
+            <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">4</span>
+
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">zeta_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="n">zeta</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">chi0</span> <span class="o">-=</span> <span class="mi">16</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">zeta_sum</span><span class="p">)</span>
+    <span class="n">g0</span> <span class="o">=</span> <span class="n">chi0</span> <span class="o">/</span> <span class="mi">64</span>
+
+    <span class="n">zpe</span> <span class="o">=</span> <span class="n">g0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">zpe</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">zpe</span> <span class="o">+=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+
+    <span class="n">nu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">overtones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">nu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">overtones</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">nu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+                <span class="n">overtones</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+    <span class="n">combinations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">omega</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">chi</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">chi</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">])</span>
+        <span class="n">combinations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">combinations</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="n">deperturbed</span> <span class="o">=</span> <span class="n">nu</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">fermi</span> <span class="ow">and</span> <span class="n">gvpt2</span> <span class="ow">and</span> <span class="n">resonances</span><span class="p">:</span>
+        <span class="n">interactions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resonances</span><span class="p">:</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"fundamental"</span><span class="p">]</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"states"</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">right</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">nu</span><span class="o">=</span><span class="n">overtones</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">right</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">nu</span><span class="o">=</span><span class="n">combinations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+            <span class="n">interactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">Interaction</span><span class="p">(</span>
+                    <span class="n">left</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="p">(</span><span class="n">k</span><span class="p">,),</span> <span class="n">nu</span><span class="o">=</span><span class="n">nu</span><span class="p">[</span><span class="n">k</span><span class="p">]),</span>
+                    <span class="n">right</span><span class="o">=</span><span class="n">right</span><span class="p">,</span>
+                    <span class="n">phi</span><span class="o">=</span><span class="n">phi_ijk</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+                    <span class="n">ftype</span><span class="o">=</span><span class="n">r</span><span class="p">[</span><span class="s2">"type"</span><span class="p">],</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">fermi_solver</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">nu</span><span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"omega"</span><span class="p">:</span> <span class="n">omega</span><span class="p">,</span>
+        <span class="s2">"nu"</span><span class="p">:</span> <span class="n">nu</span><span class="p">,</span>
+        <span class="s2">"nu_deperturbed"</span><span class="p">:</span> <span class="n">deperturbed</span><span class="p">,</span>
+        <span class="s2">"overtones"</span><span class="p">:</span> <span class="n">overtones</span><span class="p">,</span>
+        <span class="s2">"combinations"</span><span class="p">:</span> <span class="n">combinations</span><span class="p">,</span>
+        <span class="s2">"chi"</span><span class="p">:</span> <span class="n">chi</span><span class="p">,</span>
+        <span class="s2">"zpe_harmonic"</span><span class="p">:</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">zpe</span><span class="p">,</span>
+        <span class="s2">"zpe"</span><span class="p">:</span> <span class="n">zpe</span><span class="p">,</span>
+        <span class="s2">"g0"</span><span class="p">:</span> <span class="n">g0</span><span class="p">,</span>
+        <span class="s2">"resonances"</span><span class="p">:</span> <span class="n">resonances</span><span class="p">,</span>
+        <span class="s2">"flagged"</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">low_mode</span><span class="p">],</span>
+    <span class="p">}</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

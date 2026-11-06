@@ -161,13 +161,52 @@ def test_analyze_and_results(configuration, tmp_path, monkeypatch):
     assert set(data) <= set(node.metadata["results"])
 
 
-def test_degenerate_molecule_is_refused(tmp_path):
-    """A spherical top stops with a clear message (Paul, 2026-11-05)."""
+def _tetrahedral_springs():
+    """A tetrahedral CH4-like molecule held by springs between every pair of
+    atoms: a spherical top with doubly and triply degenerate modes."""
+    r = 1.09 / np.sqrt(3) / BOHR
+    xyz = np.array([[0, 0, 0], [r, r, r], [-r, -r, r], [-r, r, -r], [r, -r, -r]])
+    n = len(xyz)
+    H = np.zeros((3 * n, 3 * n))
+    for a in range(n):
+        for b in range(a + 1, n):
+            d = xyz[b] - xyz[a]
+            u = d / np.linalg.norm(d)
+            block = 0.3 * np.outer(u, u)
+            for i, j, sign in ((a, a, 1), (b, b, 1), (a, b, -1), (b, a, -1)):
+                H[3 * i : 3 * i + 3, 3 * j : 3 * j + 3] += sign * block
+    return H, xyz
+
+
+def test_spherical_top_gives_zpe_only():
+    """A spherical top is accepted for the ZPE only (Paul, Stage A, 2026-11-05):
+    no anharmonic fundamentals are reported."""
     node = VibrationalAnalysis()
-    r = 1.09 / np.sqrt(3)
-    xyz = [[0, 0, 0], [r, r, r], [-r, -r, r], [-r, r, -r], [r, -r, -r]]
-    with pytest.raises(RuntimeError, match="spherical top"):
-        node._harmonic(np.eye(15), [12.0, 1.008, 1.008, 1.008, 1.008], xyz)
+    node._id = ("1",)
+    H, xyz = _tetrahedral_springs()
+    masses = [12.0, 1.00782503, 1.00782503, 1.00782503, 1.00782503]
+    harmonic = node._harmonic(H, masses, xyz * BOHR)
+    assert harmonic.rotor == "spherical top" and harmonic.degenerate
+    assert [len(s) for s in harmonic.degenerate_sets] == [3, 2, 3]
+    n = harmonic.n
+    result = vpt2.vpt2(harmonic, np.zeros((n, n, n)), np.zeros((n, n)))
+    assert result["zpe_only"]
+    result.update(
+        hessian="analytic", derivatives="Hessians", energy=0.0,
+        spread={"cubic": 0.0, "quartic": 0.0},
+    )  # fmt: skip
+    data = node.analyze(result=result)
+    assert "fundamentals" not in data and "overtones" not in data
+    assert data["ZPE"] == pytest.approx(data["harmonic ZPE"] + data["ZPE correction"])
+    assert set(data) <= set(node.metadata["results"])
+
+
+def test_linear_molecule_is_refused():
+    """Linear molecules (3N-5 modes) are still refused."""
+    node = VibrationalAnalysis()
+    xyz = [[0, 0, -1.16], [0, 0, 0], [0, 0, 1.16]]
+    with pytest.raises(RuntimeError, match="linear"):
+        node._harmonic(np.eye(9), [15.995, 12.0, 15.995], xyz)
 
 
 def test_noise_gate():

@@ -25,10 +25,12 @@ molecules consistently. VPT2 adds the cubic and quartic force constants:
   same convention as Gaussian's;
 * the anharmonicity constants χ.
 
-**Limitations.** Molecules with degenerate vibrations -- linear molecules and symmetric
-or spherical tops such as CH\ :sub:`4`, NH\ :sub:`3`, ethane or benzene -- are refused
-with a clear message: the formulas for degenerate modes are not in yet. The structure
-must be a minimum. Modes below a threshold (200 cm\ :sup:`-1` by default), torsions and
+**Limitations.** For symmetric and spherical tops, molecules with degenerate vibrations
+such as CH\ :sub:`4`, NH\ :sub:`3`, ethane or benzene, the step gives the **zero-point
+energy only**, with the harmonic frequencies: the anharmonic fundamentals, overtones and
+constants of degenerate modes need formulas that are not in yet. The zero-point energy
+does not, because it does not depend on how the degenerate modes are chosen. Linear
+molecules are refused with a clear message. The structure must be a minimum. Modes below a threshold (200 cm\ :sup:`-1` by default), torsions and
 other large-amplitude motions, are flagged in the output: VPT2 is not reliable for them,
 though they are kept in the zero-point energy.
 
@@ -113,6 +115,14 @@ this step's displacements), the zero-point energies agree to 0.3 cm\ :sup:`-1` f
 and propane and 2 cm\ :sup:`-1` for formaldehyde, the fundamentals to 0.7 cm\ :sup:`-1`
 rms for propane. Against ORCA 6.1.1's own VPT2 for water (B3LYP/def2-TZVP) the
 fundamentals agree to 0.02 cm\ :sup:`-1`.
+
+For symmetric tops Gaussian uses a "hybrid scheme" for the rotational terms, and its
+zero-point energies differ from this step's by 3--5.5 cm\ :sup:`-1` (NH\ :sub:`3`,
+ethane, methane with one heavier hydrogen), all of it in the rotational (Watson and
+Coriolis) part. Making the same molecules asymmetric tops by changing the mass of one or
+two hydrogens slightly, Gaussian's treatment becomes the general one and the zero-point
+energies agree to 0.3--1.1 cm\ :sup:`-1` (methane, ammonia, ethane), the rotational part
+to 0.02 cm\ :sup:`-1`. Gaussian does no anharmonic analysis for spherical tops.
 
 References
 ==========
